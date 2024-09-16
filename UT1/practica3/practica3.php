@@ -6,6 +6,7 @@ declare(strict_types=1);
 <head>
     <meta charset="UTF-8">
     <title></title>
+    <script src=> </script>
 </head>
 <body>
 <?php
