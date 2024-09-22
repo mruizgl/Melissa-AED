@@ -12,7 +12,7 @@ PHP básico 5
 ?>
 ```
 
-<img src="./practica1/practica1.png" width="800">
+<img src="./images/practica1.png" width="800">
 
 ## Práctica 2 
 ```
@@ -37,7 +37,9 @@ if (is_string($un_bool)) {
 Crear el script anterior. Modificarlo para sumar a $un_str el valor de $un_int y
 mostrarlo en pantalla ¿ qué ocurre ? .
 Sumar $un_str con $un_str2 ¿ qué ocurre ? ¿ se puede concatenar una cadena con comillas
-simples con una con comillas dobles ?
+simples con una con comillas dobles ?  
+
+![alt text](./images/image-practica2.png)
 
 
 ### Explicación de los Resultados
@@ -82,12 +84,9 @@ Realizar el código anterior y tomar captura de pantalla del resultado. ¿qué e
 que ha ocurrido ?. Poner código html antes de la declaración de strict_types y probar de
 nuevo ¿ qué ocurre ahora ?
 
-<img src="practica3/image-1.png">
-   ![alt text](image.png)
-
    Si el declare está al principio me da error 
-   ![alt text](./Practica3/image-2.png)
-   ![alt text](./Practica3/image-3.png)
+   ![alt text](./images/image-practica3-error)
+   
 
 Nota para mí: las declaraciones de tipo deben siempre estar al principio.
 
@@ -97,13 +96,13 @@ Tomar captura de pantalla de: ( y explicar lo ocurrido )
 - quitar el comentario a: return $a; ¿ da error ahora ?por qué ?
 - quitar comentario a: print fun(“e”,3); ¿ da error ?
 
-![alt text](image.png)
+![alt text](./images/imageprac4.png)
 
 Al descomentar return $a;, la función intentará devolver una cadena ("o"), lo que causará un error debido a que el tipo de retorno debe ser int.
 
 Mensaje de Error:
 Fatal error: Return value of fun() must be of the type int, string returned
-![alt text](image-1.png)
+![alt text](./images/image-1.png)
 
 La función fun está declarada para devolver un valor de tipo int. Al devolver $a, que es una cadena, PHP produce un error de tipo estricto porque la cadena no cumple con el tipo int esperado.
 
@@ -138,7 +137,7 @@ y mostrar el contenido de $mivar[0] y $arr1[0]
 
 Resultado 
 
-![alt text](./images/image.png)
+![alt text](./images/image-practica5-2.png)
 
 __Explicación__  
 
@@ -153,3 +152,4 @@ Al modificar $arr2[0], cambias el contenido de $mivar, ya que $arr2 es una refer
 __Conclusión:__  
 
 $arr1 y $mivar son diferentes: $arr1 tiene el valor "una variación", mientras que $mivar tiene "variando array2". Esto ilustra cómo las referencias permiten que las variables compartan el mismo espacio en memoria, mientras que las asignaciones por valor crean copias independientes de los datos.
+
