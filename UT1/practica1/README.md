@@ -11,3 +11,4 @@ PHP básico 5
 ```
 
 <img src="practica1.png" width="800">
+
