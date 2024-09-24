@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -23,5 +24,9 @@ $message = include 'game_logic.php';
     <p><?php echo $message; ?></p>
     <h2>Historial de Intentos:</h2>
     <pre><?php echo file_get_contents('attempts.txt'); ?></pre>
+    <?php
+
+    echo "la info en username: " . $_SESSION["username"];
+    ?>
 </body>
 </html>

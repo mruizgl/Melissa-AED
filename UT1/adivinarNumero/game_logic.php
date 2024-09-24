@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Generar un número aleatorio si no existe uno en la sesión
 if (!isset($_SESSION['number'])) {
@@ -12,9 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['guess'])) {
         $guess = intval($_POST['guess']);
         $number = $_SESSION['number'];
+        $username = $_SESSION['username'];
 
         // Guardar el intento en un archivo
-        file_put_contents('attempts.txt', "Intento: $guess\n", FILE_APPEND);
+        file_put_contents('attempts.txt', "Intento: $guess de $username \n", FILE_APPEND);
 
         // Comprobar si el intento es correcto
         if ($guess < $number) {
