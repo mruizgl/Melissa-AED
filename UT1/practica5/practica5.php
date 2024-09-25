@@ -1,7 +1,7 @@
 <?php
-$foo = 5; // Asigna el valor 'Bob' a $foo
+$foo = 'Bob'; // Asigna el valor 'Bob' a $foo
 $bar = &$foo; // Referencia $foo vía $bar.
-$bar = 6; // Modifica $bar...
+$bar = "Mi nombre es $bar"; // Modifica $bar...
 echo $foo; // $foo también se modifica.
 echo $bar;
 ?>

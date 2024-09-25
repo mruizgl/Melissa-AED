@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
-</head>
-<body>
-    
-</body>
-</html>
 <?php
-const PULGADA = 2.53;
-echo PULGADA;
-const PULGADA = 8;
-echo PULGADA;
-$PULGADA = 9;
-echo $PULGADA
+// Inicializar una cadena vacía para almacenar el resultado
+$resultado = "";
 
+// Calcular las potencias del 2 desde 2^1 hasta 2^9
+for ($i = 1; $i <= 9; $i++) {
+    // Calcular 2 elevado a la potencia $i
+    $potencia = 2 ** $i;
+
+    // Concatenar el resultado a la cadena
+    $resultado .= "2^$i = $potencia<br>";
+}
+
+// Mostrar el resultado final
+echo $resultado;
 ?>
