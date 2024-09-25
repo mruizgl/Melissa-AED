@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <form action="login.php">
+    <form action="login.php" method="post">
         <input type="text" name="username"  id="username"/>
         <input type="submit" name="formularioLogin">
         

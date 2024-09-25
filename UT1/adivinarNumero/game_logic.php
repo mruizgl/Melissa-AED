@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $_SESSION['username'];
 
         // Guardar el intento en un archivo
+        
         file_put_contents('attempts.txt', "Intento: $guess de $username \n", FILE_APPEND);
 
         // Comprobar si el intento es correcto
