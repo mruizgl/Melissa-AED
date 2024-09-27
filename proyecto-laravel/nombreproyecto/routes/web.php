@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo "Under construction";
+    die();
 });
+
+Route::post('/pruebita', function () {
+    echo "se ha ejecutado peticion a /pruebita";
+    die();
+});
+
+Route::any('/relatos/{numero}', function ($numero) {
+    echo "peticion recibido para el parametro: $numero";
+    die();
+})-> where('numero', '[0-9]+');
+
