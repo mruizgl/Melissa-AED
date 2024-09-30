@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PruebaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,4 +29,15 @@ Route::any('/relatos/{numero}', function ($numero) {
     echo "peticion recibido para el parametro: $numero";
     die();
 })-> where('numero', '[0-9]+');
+
+Route::get('/hola', [PruebaController::class, 'saludar']);
+
+Route::get('/formulario', function(){
+    return view('formaleatorios');
+});
+
+
+Route::get('/procesarformulario', [PruebaController::class, 'procesarform']);
+
+
 
