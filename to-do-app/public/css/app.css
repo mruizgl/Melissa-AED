@@ -1,13 +1,12 @@
-main {
-    width: 750px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+body {
+    background: rgb(174, 238, 228);
+    background: radial-gradient(circle, rgba(174, 238, 228, 1) 0%, rgba(148, 233, 169, 1) 100%);
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Asegura que el fondo cubra toda la altura de la ventana */
 }
+
 
 
 
@@ -21,6 +20,11 @@ input[type="submit"].btn-primary {
     font-weight: bold;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"].btn-danger {
+
+    background-color: #f54831;
 }
 
 
