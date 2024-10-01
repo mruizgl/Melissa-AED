@@ -11,9 +11,12 @@ class TaskController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('task.index');
-    }
+{
+    $tasks = Task::all();
+    return view('task.index', compact('tasks'));
+    //$task['tasks'] = Task::all();
+    //return view('task.index', $task);
+}
 
     /**
      * Show the form for creating a new resource.

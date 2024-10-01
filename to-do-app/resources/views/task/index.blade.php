@@ -13,6 +13,21 @@
         <input type="submit" value="Agregar tarea">
 
     </form>
+    <br/>
+    <table border="1">
+        <tr>
+            <td> Nombre de la tarea </td>
+            <td> Acción </td>
+        </tr>
+
+        @foreach ($tasks as $task)
+        <tr>
+            <td> {{ $task->task}} </td>
+            <td> Acción </td>
+        </tr>
+        @endforeach
+
+    </table>
 
 </body>
 </html>
