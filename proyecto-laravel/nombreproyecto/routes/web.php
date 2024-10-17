@@ -39,5 +39,7 @@ Route::get('/formulario', function(){
 
 Route::get('/procesarformulario', [PruebaController::class, 'procesarform']);
 
+Route::post('/fileupload', '\App\Http\Controllers\PruebaController@subir');
+
 
 
