@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EditorControl;
+use Illuminate\Http\Request;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +20,18 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('editor', [EditorControl::class, 'editorget']);
+Route::post('/login', [FileController::class, 'login']);
+
+Route::get('/home', [FileController::class, 'showHome']);
+
+Route::post('/create-file', [FileController::class, 'createFile']);
+
+Route::get('/editor', [FileController::class, 'showEditor']);
+
+Route::get('/logout', [FileController::class, 'logout']);
+
+Route::post('/ejemploeditorpost', [FileController::class, 'storeFile']);
+
+Route::post('/redirect-editor', [FileController::class, 'redirectEditor']);
+
+
