@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; // Añadido para usar Storage
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -64,8 +64,6 @@ class FileController extends Controller
         $usuario = $request->session()->get('nick');
 
         $privados = Storage::files("private/" . $usuario);
-
-
         $compartidos = Storage::files("shared");
 
         $privados = is_array($privados) ? $privados : [];
