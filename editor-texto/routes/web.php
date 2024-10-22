@@ -39,5 +39,8 @@ Route::post('/directory', [FileController::class, 'crearListarCarpetaUsuario']);
 
 Route::post('/create-file', [FileController::class, 'createFile'])->name('createFile');
 
+Route::get('/editor/{file}', [FileController::class, 'edit'])->name('editFile');
+
+
 
 

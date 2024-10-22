@@ -15,11 +15,10 @@ class FileController extends Controller
         return redirect('/editor');
     }
 
-
     public function showEditor(Request $request)
     {
         $fileName = $request->session()->get('file_name', '');
-        $usuario = $request->session()->get('nick');
+        $usuario = $request->session()->get('usuario'); 
         $filePath = "/$usuario/$fileName.txt";
 
         $contenido = Storage::exists($filePath) ? Storage::get($filePath) : '';
@@ -37,7 +36,7 @@ class FileController extends Controller
         $contenido = $request->input('contenido');
         $fileName = $request->session()->get('file_name');
         $fileType = $request->input('file_type');
-        $usuario = $request->session()->get('nick');
+        $usuario = $request->session()->get('usuario');
 
         $filePathName = $fileName . '_' . $usuario . '.txt';
 
@@ -48,35 +47,45 @@ class FileController extends Controller
         }
 
         Storage::makeDirectory($directory, 0755, true);
-
         $filePath = $directory . "/" . $filePathName;
-
         Storage::put($filePath, $contenido);
 
-        return redirect('/home')->with('success', 'Archivo guardado correctamente.');
+        return $this->crearListarCarpetaUsuario($request)->with('success', 'Archivo guardado correctamente.');
     }
-
 
     public function crearListarCarpetaUsuario(Request $request)
     {
         $this->comprobarUser();
+        $usuario = $request->session()->get('usuario'); // Cambiado de 'nick' a 'usuario'
 
-        $usuario = $request->session()->get('nick');
-
-        $privados = Storage::files("private/" . $usuario);
+        // Listar archivos privados del usuario
+        $privados = Storage::files("private/{$usuario}");
+        // Listar archivos compartidos
         $compartidos = Storage::files("shared");
 
+        // Manejar el caso donde no hay archivos
         $privados = is_array($privados) ? $privados : [];
         $compartidos = is_array($compartidos) ? $compartidos : [];
 
         return view('home', compact('privados', 'compartidos', 'usuario'));
     }
 
+    public function edit($file)
+    {
+        $usuario = session('usuario'); // Cambiado de 'nick' a 'usuario'
+        $filePath = "private/{$usuario}/{$file}";
 
+        if (Storage::exists($filePath)) {
+            $content = Storage::get($filePath);
+            return view('editor', ['content' => $content, 'fileName' => $file]);
+        } else {
+            return redirect()->back()->with('error', 'Archivo no encontrado.');
+        }
+    }
 
     public function comprobarUser()
     {
-        if (!session()->has('nick')) {
+        if (!session()->has('usuario')) { // Cambiado de 'nick' a 'usuario'
             return redirect()->route('login')->send();
         }
     }

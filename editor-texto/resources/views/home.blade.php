@@ -1,35 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Home</title>
 </head>
-<body>
-    <h1>Bienvenido, {{ $nick }}</h1>
 
+<body>
+    <h1>Bienvenido, {{ $usuario }}</h1>
+
+    <!-- Listado de archivos privados -->
     <h2>Tus Ficheros Privados</h2>
     <ul>
-        @if (count($privados) > 0)
-        @foreach ($privados as $file)
-            <li>
-                <a href="editor">{{ basename($file) }}</a>
-            </li>
-        @endforeach
-    @else
-        <li>No tienes ficheros privados guardados.</li>
-    @endif
+        @forelse ($privados as $file)
+            <li><a href="{{ route('editFile', ['file' => basename($file)]) }}">{{ basename($file) }}</a></li>
+        @empty
+            <li>No tienes ficheros privados guardados.</li>
+        @endforelse
     </ul>
 
+    <!-- Listado de archivos compartidos -->
     <h2>Ficheros Compartidos</h2>
     <ul>
-        @if (count($compartidos) > 0)
-        @foreach ($compartidos as $file)
-            <li>
-                <a href="editor">{{ basename($file) }}</a>
-            </li>
-        @endforeach
-    @else
-        <li>No tienes ficheros privados guardados.</li>
-    @endif
+        @forelse ($compartidos as $file)
+            <li><a href="{{ route('editFile', ['file' => basename($file)]) }}">{{ basename($file) }}</a></li>
+        @empty
+            <li>No hay archivos compartidos disponibles.</li>
+        @endforelse
     </ul>
 
     <h2>Crear Nuevo Fichero</h2>
@@ -49,4 +45,5 @@
 
     <a href="/logout">Cerrar Sesión</a>
 </body>
+
 </html>

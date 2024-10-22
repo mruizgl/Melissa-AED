@@ -9,16 +9,19 @@ class HomeController extends Controller
 {
     public function login(Request $request)
     {
-        $request->session()->put('nick', $request->input('nick'));
-        $nick = $request->session()->get('nick');
+        $request->session()->put('usuario', $request->input('nick')); // Guardar el usuario en la sesión como 'usuario'
+        $usuario = $request->session()->get('usuario'); // Obtener el valor de 'usuario'
 
-        $privados = Storage::files("private/" . $nick);
+        // Obtener archivos privados y compartidos
+        $privados = Storage::files("private/" . $usuario);
         $compartidos = Storage::files("shared");
 
+        // Asegurarse de que ambos sean arrays, incluso si no existen archivos
         $privados = is_array($privados) ? $privados : [];
         $compartidos = is_array($compartidos) ? $compartidos : [];
 
-        return view('home', compact('privados', 'compartidos', 'nick'));
+        // Retornar la vista con 'privados', 'compartidos', y 'usuario'
+        return view('home', compact('privados', 'compartidos', 'usuario'));
     }
 
     public function showHome(Request $request)

@@ -1,5 +1,6 @@
 <?php
 
+use App\Contracts\RolContract;
 use Illuminate\Support\Facades\DB;
 
 class Rol {
@@ -14,12 +15,12 @@ class RolDao implements ICrud
     {
         $myPDO = DB::getPdo();
         // FETCH_ASSOC
-        $stmt = $myPDO->prepare("SELECT * FROM " . PersonaContract::TABLE_NAME);
+        $stmt = $myPDO->prepare("SELECT * FROM " . RolContract::TABLE_NAME);
         $stmt->setFetchMode(PDO::FETCH_ASSOC); //devuelve array asociativo
         $stmt->execute(); // Ejecutamos la sentencia
         $personas = [];
         while ($row = $stmt->fetch()) {
-            $p = new Persona();
+            $p = new Rol();
             $p->setId($row["id"])
                 ->setNombre($row["nombre"])
                 ->setEdad($row["edad"]);
