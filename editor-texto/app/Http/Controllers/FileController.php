@@ -18,11 +18,24 @@ class FileController extends Controller
     public function showEditor(Request $request)
     {
         $fileName = $request->session()->get('file_name', '');
-        $usuario = $request->session()->get('usuario'); 
-        $filePath = "/$usuario/$fileName.txt";
+        $usuario = $request->session()->get('usuario');
 
-        $contenido = Storage::exists($filePath) ? Storage::get($filePath) : '';
+        // Asegúrate de que los valores de sesión estén presentes
+        if (!$fileName || !$usuario) {
+            dd('Valores de sesión no disponibles: ', $fileName, $usuario);
+        }
 
+        // Ruta del archivo
+        $filePath = "private/{$usuario}/{$fileName}_{$usuario}.txt";
+
+        // Verifica si el archivo existe y carga su contenido
+        if (Storage::disk('local')->exists($filePath)) {
+            $contenido = Storage::disk('local')->get($filePath);
+        } else {
+            dd('El archivo no existe en la ruta especificada: ' . $filePath);
+        }
+
+        // Retorna la vista con el contenido del archivo
         return view('editor', [
             'contenido' => $contenido,
             'file_name' => $fileName,
@@ -49,8 +62,8 @@ class FileController extends Controller
         Storage::makeDirectory($directory, 0755, true);
         $filePath = $directory . "/" . $filePathName;
         Storage::put($filePath, $contenido);
-
-        return $this->crearListarCarpetaUsuario($request)->with('success', 'Archivo guardado correctamente.');
+        //dd($filePath, $contenido);
+        return $this->crearListarCarpetaUsuario($request);
     }
 
     public function crearListarCarpetaUsuario(Request $request)
@@ -88,5 +101,11 @@ class FileController extends Controller
         if (!session()->has('usuario')) { // Cambiado de 'nick' a 'usuario'
             return redirect()->route('login')->send();
         }
+    }
+
+    public function seleccionarArchivo(Request $request, $fileName)
+    {
+    $request->session()->put('file_name', $fileName); // Guardar el nombre del archivo en la sesión
+    return redirect()->route('editor');  // Redirigir al editor
     }
 }

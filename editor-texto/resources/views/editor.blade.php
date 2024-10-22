@@ -7,7 +7,7 @@
     <script src="https://cdn.tiny.cloud/1/apib7xcg6bpbohpnx8gx9urjphyzuohx0aiyx9ztfhhf1wuy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: 'textarea',
+            selector: '#editor', // Asegúrate de que esto coincida con el ID del textarea
             plugins: [
                 'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
             ],
@@ -21,7 +21,7 @@
         @csrf
         <input type="hidden" name="contenido" id="contenido">
         <input type="hidden" name="file_type" value="{{ session('file_type') }}">
-        <textarea id="editor"></textarea><br />
+        <textarea id="editor">{{ $contenido }}</textarea><br /> <!-- Aquí se carga el contenido -->
         <input type="submit" value="Guardar"><br />
     </form>
 
