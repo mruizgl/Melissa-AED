@@ -3,73 +3,83 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage; // Añadido para usar Storage
 
 class FileController extends Controller
 {
-    public function login(Request $request)
-    {
-        $request->session()->put('nick', $request->input('nick'));
-        return redirect('/home');
-    }
-
-    public function showHome(Request $request)
-    {
-        if (!$request->session()->has('nick')) {
-            return redirect('/');
-        }
-
-        $nick = $request->session()->get('nick');
-        return view('home', ['nick' => $nick]);
-    }
-
     public function createFile(Request $request)
     {
-        // Redirigir al editor y pasarle el nombre del fichero
-        return redirect('/editor')->with('file_name', $request->input('file_name'));
+        $request->session()->put('file_name', $request->input('file_name'));
+        $request->session()->put('file_type', $request->input('file_type'));
+
+        return redirect('/editor');
     }
+
 
     public function showEditor(Request $request)
     {
-        $fileName = $request->session()->get('file_name', ''); // Obtener el nombre del fichero si existe
-        return view('editor', ['contenido' => '', 'file_name' => $fileName]);
-    }
+        $fileName = $request->session()->get('file_name', '');
+        $usuario = $request->session()->get('nick');
+        $filePath = "/$usuario/$fileName.txt";
 
-    public function logout(Request $request)
-    {
-        $request->session()->forget('nick');
-        return redirect('/');
+        $contenido = Storage::exists($filePath) ? Storage::get($filePath) : '';
+
+        return view('editor', [
+            'contenido' => $contenido,
+            'file_name' => $fileName,
+        ]);
     }
 
     public function storeFile(Request $request)
     {
+        $this->comprobarUser();
+
         $contenido = $request->input('contenido');
-        $fileName = $request->input('file_name');
-        $fileType = $request->input('file_type'); // Si decides incluir tipo
+        $fileName = $request->session()->get('file_name');
+        $fileType = $request->input('file_type');
+        $usuario = $request->session()->get('nick');
 
-        // Obtener los archivos actuales de la sesión o inicializarlos si no existen
-        $files = session('files', []);
+        $filePathName = $fileName . '_' . $usuario . '.txt';
 
-        // Agregar el nuevo archivo a la sesión
-        $files[] = [
-            'name' => $fileName,
-            'content' => $contenido,
-            'private' => $fileType === 'private', // Ajusta esto según tu lógica
-            'created_at' => now(),
-        ];
+        if ($fileType === 'private') {
+            $directory = "/private/" . $usuario;
+        } else {
+            $directory = "/shared";
+        }
 
-        // Almacenar los archivos actualizados en la sesión
-        $request->session()->put('files', $files);
+        Storage::makeDirectory($directory, 0755, true);
 
-        return redirect('/home'); // Redirigir al Home después de guardar el archivo
+        $filePath = $directory . "/" . $filePathName;
+
+        Storage::put($filePath, $contenido);
+
+        return redirect('/home')->with('success', 'Archivo guardado correctamente.');
     }
 
-    public function redirectEditor(Request $request)
-    {
-        // Guardar el tipo de archivo en la sesión
-        $request->session()->put('file_type', $request->input('file_type'));
 
-        // Redirigir al editor
-        return redirect('/editor');
+    public function crearListarCarpetaUsuario(Request $request)
+    {
+        $this->comprobarUser();
+
+        $usuario = $request->session()->get('nick');
+
+        $privados = Storage::files("private/" . $usuario);
+
+
+        $compartidos = Storage::files("shared");
+
+        $privados = is_array($privados) ? $privados : [];
+        $compartidos = is_array($compartidos) ? $compartidos : [];
+
+        return view('home', compact('privados', 'compartidos', 'usuario'));
+    }
+
+
+
+    public function comprobarUser()
+    {
+        if (!session()->has('nick')) {
+            return redirect()->route('login')->send();
+        }
     }
 }
-

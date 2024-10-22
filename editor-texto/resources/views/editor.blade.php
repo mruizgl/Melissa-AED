@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejemplo editor</title>
+    <title>Editor</title>
     <script src="https://cdn.tiny.cloud/1/apib7xcg6bpbohpnx8gx9urjphyzuohx0aiyx9ztfhhf1wuy/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
@@ -17,15 +17,10 @@
 </head>
 <body>
 
-    <form action="/ejemploeditorpost" method="post">
+    <form action="/editor" method="post">
         @csrf
-
         <input type="hidden" name="contenido" id="contenido">
-        <label for="file_name">Nombre del Fichero:</label>
-        <input type="text" name="file_name" required>
-
         <input type="hidden" name="file_type" value="{{ session('file_type') }}">
-
         <textarea id="editor"></textarea><br />
         <input type="submit" value="Guardar"><br />
     </form>
