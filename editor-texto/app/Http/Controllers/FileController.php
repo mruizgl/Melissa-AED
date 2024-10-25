@@ -17,28 +17,26 @@ class FileController extends Controller
 
     public function showEditor(Request $request)
     {
-        $fileName = $request->session()->get('file_name', '');
+        $this->comprobarUser();
+
+        $file = $request->session()->get('file', '');
         $usuario = $request->session()->get('usuario');
 
-        // Asegúrate de que los valores de sesión estén presentes
-        if (!$fileName || !$usuario) {
-            dd('Valores de sesión no disponibles: ', $fileName, $usuario);
+        if (!$file || !$usuario) {
+            dd('Valores de sesión no disponibles: ', $file, $usuario);
         }
 
-        // Ruta del archivo
-        $filePath = "private/{$usuario}/{$fileName}_{$usuario}.txt";
+        $filePath = "private/{$usuario}/{$file}_{$usuario}.txt";
 
-        // Verifica si el archivo existe y carga su contenido
         if (Storage::disk('local')->exists($filePath)) {
             $contenido = Storage::disk('local')->get($filePath);
         } else {
             dd('El archivo no existe en la ruta especificada: ' . $filePath);
         }
 
-        // Retorna la vista con el contenido del archivo
         return view('editor', [
             'contenido' => $contenido,
-            'file_name' => $fileName,
+            'file_name' => $file,
         ]);
     }
 
@@ -69,7 +67,7 @@ class FileController extends Controller
     public function crearListarCarpetaUsuario(Request $request)
     {
         $this->comprobarUser();
-        $usuario = $request->session()->get('usuario'); // Cambiado de 'nick' a 'usuario'
+        $usuario = $request->session()->get('usuario'); 
 
         // Listar archivos privados del usuario
         $privados = Storage::files("private/{$usuario}");
@@ -85,7 +83,7 @@ class FileController extends Controller
 
     public function edit($file)
     {
-        $usuario = session('usuario'); // Cambiado de 'nick' a 'usuario'
+        $usuario = session('usuario'); 
         $filePath = "private/{$usuario}/{$file}";
 
         if (Storage::exists($filePath)) {
@@ -98,7 +96,7 @@ class FileController extends Controller
 
     public function comprobarUser()
     {
-        if (!session()->has('usuario')) { // Cambiado de 'nick' a 'usuario'
+        if (!session()->has('usuario')) { 
             return redirect()->route('login')->send();
         }
     }
