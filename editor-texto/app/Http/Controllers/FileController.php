@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage; // Añadido para usar Storage
+use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
@@ -15,18 +15,28 @@ class FileController extends Controller
         return redirect('/editor');
     }
 
-
     public function showEditor(Request $request)
     {
-        $fileName = $request->session()->get('file_name', '');
-        $usuario = $request->session()->get('nick');
-        $filePath = "/$usuario/$fileName.txt";
+        $this->comprobarUser();
 
-        $contenido = Storage::exists($filePath) ? Storage::get($filePath) : '';
+        $file = $request->session()->get('file', '');
+        $usuario = $request->session()->get('usuario');
+
+        if (!$file || !$usuario) {
+            dd('Valores de sesión no disponibles: ', $file, $usuario);
+        }
+
+        $filePath = "private/{$usuario}/{$file}_{$usuario}.txt";
+
+        if (Storage::disk('local')->exists($filePath)) {
+            $contenido = Storage::disk('local')->get($filePath);
+        } else {
+            dd('El archivo no existe en la ruta especificada: ' . $filePath);
+        }
 
         return view('editor', [
             'contenido' => $contenido,
-            'file_name' => $fileName,
+            'file_name' => $file,
         ]);
     }
 
@@ -37,7 +47,7 @@ class FileController extends Controller
         $contenido = $request->input('contenido');
         $fileName = $request->session()->get('file_name');
         $fileType = $request->input('file_type');
-        $usuario = $request->session()->get('nick');
+        $usuario = $request->session()->get('usuario');
 
         $filePathName = $fileName . '_' . $usuario . '.txt';
 
@@ -48,38 +58,52 @@ class FileController extends Controller
         }
 
         Storage::makeDirectory($directory, 0755, true);
-
         $filePath = $directory . "/" . $filePathName;
-
         Storage::put($filePath, $contenido);
-
-        return redirect('/home')->with('success', 'Archivo guardado correctamente.');
+        //dd($filePath, $contenido);
+        return $this->crearListarCarpetaUsuario($request);
     }
-
 
     public function crearListarCarpetaUsuario(Request $request)
     {
         $this->comprobarUser();
+        $usuario = $request->session()->get('usuario'); 
 
-        $usuario = $request->session()->get('nick');
-
-        $privados = Storage::files("private/" . $usuario);
-
-
+        // Listar archivos privados del usuario
+        $privados = Storage::files("private/{$usuario}");
+        // Listar archivos compartidos
         $compartidos = Storage::files("shared");
 
+        // Manejar el caso donde no hay archivos
         $privados = is_array($privados) ? $privados : [];
         $compartidos = is_array($compartidos) ? $compartidos : [];
 
         return view('home', compact('privados', 'compartidos', 'usuario'));
     }
 
+    public function edit($file)
+    {
+        $usuario = session('usuario'); 
+        $filePath = "private/{$usuario}/{$file}";
 
+        if (Storage::exists($filePath)) {
+            $content = Storage::get($filePath);
+            return view('editor', ['content' => $content, 'fileName' => $file]);
+        } else {
+            return redirect()->back()->with('error', 'Archivo no encontrado.');
+        }
+    }
 
     public function comprobarUser()
     {
-        if (!session()->has('nick')) {
+        if (!session()->has('usuario')) { 
             return redirect()->route('login')->send();
         }
+    }
+
+    public function seleccionarArchivo(Request $request, $fileName)
+    {
+    $request->session()->put('file_name', $fileName); // Guardar el nombre del archivo en la sesión
+    return redirect()->route('editor');  // Redirigir al editor
     }
 }

@@ -1,11 +1,9 @@
 <?php
 
+use App\Contracts\RolContract;
+use App\Models\Rol;
 use Illuminate\Support\Facades\DB;
 
-class Rol {
-    private string $nombre;
-    private int $id;
-}//meter en el modelo, esto es de ejemplo, hacer getter y setters
 
 class RolDao implements ICrud
 {
@@ -14,23 +12,26 @@ class RolDao implements ICrud
     {
         $myPDO = DB::getPdo();
         // FETCH_ASSOC
-        $stmt = $myPDO->prepare("SELECT * FROM " . PersonaContract::TABLE_NAME);
+        $stmt = $myPDO->prepare("SELECT * FROM " . RolContract::TABLE_NAME);
         $stmt->setFetchMode(PDO::FETCH_ASSOC); //devuelve array asociativo
         $stmt->execute(); // Ejecutamos la sentencia
-        $personas = [];
+        $roles = [];
         while ($row = $stmt->fetch()) {
-            $p = new Persona();
-            $p->setId($row["id"])
-                ->setNombre($row["nombre"])
-                ->setEdad($row["edad"]);
-            $personas[] = $p;
+            $r = new Rol();
+            $r->setId($row["id"])
+                ->setNombre($row["nombre"]);
+            $roles[] = $r;
         }
 
-        return $personas;
+        return $roles;
     }
 
     public function save($dao){}
     public function findById($id){}
     public function update($dao){}
     public function delete($id){}
+    //dao->figuraDAO, rolDAO, tableroDAO, usuarioDAO. contract->FiguraContract, RolContract, TableroContract, UsuarioContract. MODELOS.> Figura, Rol, Tablero, User, usuario
+    //verificar una pass:
+        //Hash::check($passwordEnTextoPlano, $usuario->getPassword() )
+        //$usuario->setPassword(Hash::make($request->passwordTextoPlano))
 }
