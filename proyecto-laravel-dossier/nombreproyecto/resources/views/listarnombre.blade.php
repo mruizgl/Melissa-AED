@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body class="antialiased">
-    @foreach ($array as $dato)
-    <p> dato: {$dato} </p>
-    @endforeach
+<body>
+    <form action="POST">
+        <input type="text"> 
+
+    </form>
 </body>
 </html>
