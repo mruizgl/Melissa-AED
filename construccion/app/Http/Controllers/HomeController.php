@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DAO\UsuarioDAO;
+use App\Models\Usuario;
 
 class HomeController extends Controller
 {
@@ -48,10 +49,10 @@ class HomeController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|unique:usuarios,nombre',
-            'password' => 'required|string|min:6',
-        ]);
+        //$request->validate([
+        //    'nombre' => 'required|string|unique:usuarios,nombre',
+        //    'password' => 'required|string|min:6',
+        //]);
 
         $usuario = new Usuario();
         $usuario->setNombre($request->input('nombre'));

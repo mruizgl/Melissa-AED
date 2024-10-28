@@ -2,7 +2,7 @@
 
 namespace App\Contracts;
 
-final class RolContract {
+final class UsuarioContract {
     public const TABLE_NAME = "usuarios";
     public const COL_ID = "id";
     public const COL_NOMBRE = "nombre";
