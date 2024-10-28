@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::post('/login', [HomeController::class, 'login']);
+Route::any('/login', [HomeController::class, 'login']);
 
 Route::get('/register', function () {
     return view('register');

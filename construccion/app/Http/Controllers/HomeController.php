@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\DAO\UsuarioDAO;
 use App\Models\Usuario;
 
+use function Laravel\Prompts\error;
+
 class HomeController extends Controller
 {
     protected $usuarioDAO;
@@ -58,10 +60,11 @@ class HomeController extends Controller
         $usuario->setNombre($request->input('nombre'));
         $usuario->setPassword($request->input('password'));
         $usuario->setRolId(1); 
-
+        
         if ($this->usuarioDAO->save($usuario)) {
-            return redirect('/login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
+            return redirect('/')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
         } else {
+            return back()->with(error("Error al registrar"));
             return back()->withErrors(['register_error' => 'Error al registrar el usuario.']);
         }
     }

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Registro de Usuario</h1>
-    <form action="{{ url('/register') }}">
+    <form method="POST" action="{{ url('/register') }}">
         @csrf
         <label for="nombre">Nombre de usuario:</label>
         <input type="text" id="nombre" name="nombre" required>
