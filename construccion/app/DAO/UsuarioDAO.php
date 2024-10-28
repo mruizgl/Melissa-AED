@@ -31,11 +31,11 @@ class UsuarioDAO implements ICrud
     public function save($usuario): bool
     {
         $pdo = DB::getPdo();
-        $stmt = $pdo->prepare('INSERT INTO ' . UsuarioContract::TABLE_NAME . ' (' . UsuarioContract::COL_NOMBRE . ', ' . UsuarioContract::COL_PASSWORD . ', ' . UsuarioContract::COL_ROL_ID . ') VALUES (:nombre, :password, :rol_id)');
+        $stmt = $pdo->prepare('INSERT INTO ' . UsuarioContract::TABLE_NAME . ' (' . UsuarioContract::COL_NOMBRE . ', ' . UsuarioContract::COL_PASSWORD . ', ' . UsuarioContract::COL_ROL_ID . ') VALUES (:nombre, :password, :rol)');
         return $stmt->execute([
             'nombre' => $usuario->getNombre(),
             'password' => Hash::make($usuario->getPassword()),
-            'rol_id' => $usuario->getRolId()
+            'rol' => $usuario->getRolId()
         ]);
     }
 

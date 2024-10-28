@@ -7,7 +7,7 @@ final class UsuarioContract {
     public const COL_ID = "id";
     public const COL_NOMBRE = "nombre";
     public const COL_PASSWORD = "password";
-    public const COL_ROL_ID = "rol_id";
+    public const COL_ROL_ID = "rol";
 
 
 
