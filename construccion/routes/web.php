@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,9 @@ Route::get('/', function () {
 });
 
 Route::post('/login', [HomeController::class, 'login']);
+
+Route::get('/register', function () {
+    return view('register');
+});
+
+Route::post('/register', [HomeController::class, 'register']);

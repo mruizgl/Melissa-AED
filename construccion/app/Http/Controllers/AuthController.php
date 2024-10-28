@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DAO\UsuarioDAO;
 
-class HomeController extends Controller
+class AuthController extends Controller
 {
     protected $usuarioDAO;
 
-    public function __construct(UsuarioDAO $usuarioDAO)
+    public function __construct()
     {
-        $this->usuarioDAO = $usuarioDAO;
+        $this->usuarioDAO = new UsuarioDAO();
     }
 
     /**
@@ -40,30 +39,4 @@ class HomeController extends Controller
             ]);
         }
     }
-
-    public function showRegisterForm()
-    {
-        return view('register');
-    }
-
-    public function register(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|string|unique:usuarios,nombre',
-            'password' => 'required|string|min:6',
-        ]);
-
-        $usuario = new Usuario();
-        $usuario->setNombre($request->input('nombre'));
-        $usuario->setPassword($request->input('password'));
-        $usuario->setRolId(1); 
-
-        if ($this->usuarioDAO->save($usuario)) {
-            return redirect('/login')->with('success', 'Registro exitoso. Ahora puedes iniciar sesión.');
-        } else {
-            return back()->withErrors(['register_error' => 'Error al registrar el usuario.']);
-        }
-    }
-
-
 }

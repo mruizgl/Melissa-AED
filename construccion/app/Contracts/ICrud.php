@@ -1,4 +1,7 @@
 <?php
+
+namespace App\Contracts;
+
 interface ICrud{
 
     public function findAll();
