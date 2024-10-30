@@ -32,14 +32,14 @@ class UsuarioDAO implements ICrud
     {
         $pdo = DB::getPdo();
         //dd($pdo, $usuario);
-        $stmt = $pdo->prepare('INSERT INTO ' . UsuarioContract::TABLE_NAME . ' (' . UsuarioContract::COL_NOMBRE . ', ' . UsuarioContract::COL_PASSWORD . ', ' . UsuarioContract::COL_ROL_ID . ') 
+        $stmt = $pdo->prepare('INSERT INTO ' . UsuarioContract::TABLE_NAME . ' (' . UsuarioContract::COL_NOMBRE . ', ' . UsuarioContract::COL_PASSWORD . ', ' . UsuarioContract::COL_ROL_ID . ')
         VALUES (:nombre, :password, :rol)');
         return $stmt->execute([
             'nombre' => $usuario->getNombre(),
             'password' => Hash::make($usuario->getPassword()),
             'rol' => $usuario->getRolId()
         ]);
-    }     
+    }
 
     public function findById($id): ?Usuario
     {
@@ -96,5 +96,25 @@ class UsuarioDAO implements ICrud
         }
 
         return null;
+    }
+
+    public function getTablerosPorUsuario(int $usuarioId)
+    {
+
+        $tablerosData = DB::table('tableros')
+            ->where('usuario_id', $usuarioId)
+            ->get();
+
+        $tableros = [];
+        foreach ($tablerosData as $data) {
+            $tablero = new Tablero();
+            $tablero->setId($data->id);
+            $tablero->setNombre($data->nombre);
+            $tablero->setFecha($data->fecha); 
+            $tablero->setUsuarioId($data->usuario_id);
+            $tableros[] = $tablero;
+        }
+
+        return $tableros;
     }
 }

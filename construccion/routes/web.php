@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TableroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+/**
+ *Login
+ */
 Route::get('/', function () {
     return view('login');
 });
@@ -25,3 +29,11 @@ Route::get('/register', function () {
 });
 
 Route::post('/register', [HomeController::class, 'register']);
+
+Route::get('/home', [HomeController::class, 'index']); 
+
+/**
+ * Tablero
+ */
+Route::get('/tableros/create', [TableroController::class, 'create']);
+Route::post('/tableros', [TableroController::class, 'store']);
