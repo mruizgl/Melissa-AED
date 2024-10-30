@@ -2,14 +2,48 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $dni
+ * @property string $nombre
+ * @property string $apellidos
+ * @property integer $fechanacimiento
+ * @property Matricula[] $matriculas
+ */
 class Alumno extends Model
 {
-    protected string $nombre;
-    protected string $apellidos;
-    protected int $edad;
+    /**
+     * The primary key for the model.
+     * 
+     * @var string
+     */
+    protected $primaryKey = 'dni';
 
-    use HasFactory;
+    /**
+     * The "type" of the auto-incrementing ID.
+     * 
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     * 
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['nombre', 'apellidos', 'fechanacimiento'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function matriculas()
+    {
+        return $this->hasMany('App\Models\Matricula', 'dni', 'dni');
+    }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $alumno = Alumno::find(1);
     return view('welcome');
 });

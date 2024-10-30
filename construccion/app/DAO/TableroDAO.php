@@ -1,6 +1,8 @@
 
 <?php
 
+namespace App\DAO;
+
 use App\Models\Tablero;
 use App\Contracts\ICrud;
 use Illuminate\Support\Facades\DB;
