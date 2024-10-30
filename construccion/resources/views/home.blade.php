@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Tableros</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> <!-- Agrega tu archivo CSS si lo tienes -->
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
     <header>
         <h1>Mis Tableros</h1>
         <nav>
             <a href="{{ url('/tableros/create') }}">Crear Tablero</a>
-            <a href="{{ url('/logout') }}">Cerrar Sesión</a>
+            <a href="{{ url('/') }}">Cerrar Sesión</a>
         </nav>
     </header>
 

@@ -81,10 +81,9 @@ class HomeController extends Controller
     {
         $usuarioId = $request->session()->get('usuario_id');
 
-    // Obtener el usuario (puedes usar UsuarioDAO aquí)
     $usuario = $this->usuarioDAO->findById($usuarioId);
 
-    // Obtener los tableros directamente desde el modelo
+
     $tableros = Tablero::where('usuario_id', $usuarioId)->get();
 
     return view('home', compact('tableros', 'usuario'));
