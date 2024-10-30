@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DAO\UsuarioDAO;
 use App\DAO\TableroDAO;
 use App\Models\Usuario;
+use App\Models\Tablero;
 
 use function Laravel\Prompts\error;
 
@@ -80,10 +81,13 @@ class HomeController extends Controller
     {
         $usuarioId = $request->session()->get('usuario_id');
 
+    // Obtener el usuario (puedes usar UsuarioDAO aquí)
+    $usuario = $this->usuarioDAO->findById($usuarioId);
 
-        $tableros = $this->tableroDAO->findByUsuarioId($usuarioId);
+    // Obtener los tableros directamente desde el modelo
+    $tableros = Tablero::where('usuario_id', $usuarioId)->get();
 
-        return view('home', compact('tableros'));
+    return view('home', compact('tableros', 'usuario'));
     }
 
 }
