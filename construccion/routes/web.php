@@ -37,3 +37,5 @@ Route::get('/home', [HomeController::class, 'index']);
  */
 Route::get('/tableros/create', [TableroController::class, 'create']);
 Route::post('/tableros', [TableroController::class, 'store']);
+Route::get('/tableros/{id}', [TableroController::class, 'showBoard'])->name('tableros.show');
+

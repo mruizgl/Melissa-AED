@@ -4,16 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Tableros</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 <body>
-    <header>
-        <h1>Mis Tableros</h1>
-        <nav>
-            <a href="{{ url('/tableros/create') }}">Crear Tablero</a>
-            <a href="{{ url('/') }}">Cerrar Sesión</a>
-        </nav>
-    </header>
 
     <main>
         <h2>Mis Tableros</h2>
@@ -32,6 +25,13 @@
         @endforeach
             </ul>
         @endif
+        <div>
+            <a href="{{ url('/tableros/create') }}">Crear Tablero</a>
+            
+        </div>
+        <div>
+            <a href="{{ url('/') }}">Cerrar Sesión</a>
+        </div>
     </main>
 </body>
 </html>

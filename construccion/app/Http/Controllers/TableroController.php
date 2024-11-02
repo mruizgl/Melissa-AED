@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DAO\TableroDAO;
 use App\Models\Tablero;
+use Illuminate\Support\Facades\DB;
+
 
 
 class TableroController extends Controller
@@ -43,5 +45,44 @@ class TableroController extends Controller
         } else {
             return back()->withErrors(['save_error' => 'Error al guardar el tablero.']);
         }
+    }
+
+    public function edit($id)
+    {
+        $figuras = Figura::all();
+
+        return view('edit_tablero', compact('figuras'));
+    }
+
+    public function addFigureToBoard(Request $request, $tableroId)
+    {
+    $request->validate([
+        'figura_id' => 'required|integer',
+        'posicion' => 'required|integer|unique:figuras_tableros,posicion,NULL,id,tablero_id,' . $tableroId,
+    ]);
+
+    DB::table('figuras_tableros')->insert([
+        'tablero_id' => $tableroId,
+        'figura_id' => $request->input('figura_id'),
+        'posicion' => $request->input('posicion'),
+    ]);
+
+    return redirect()->back()->with('success', 'Figura añadida al tablero.');
+    }
+
+    public function showBoard($id)
+    {
+        $tablero = DB::table('tableros')->where('id', $id)->first();
+        
+        $figuras = DB::table('figuras')->get();
+    
+        $figurasEnTablero = DB::table('figuras_tableros')
+            ->join('figuras', 'figuras_tableros.figura_id', '=', 'figuras.id')
+            ->where('tablero_id', $id)
+            ->orderBy('posicion')
+            ->select('figuras_tableros.posicion', 'figuras.imagen', 'figuras.tipo_imagen')
+            ->get();
+    
+        return view('tableros.edit', compact('tablero', 'figurasEnTablero', 'figuras'));
     }
 }
