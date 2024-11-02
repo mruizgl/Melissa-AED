@@ -13,13 +13,11 @@ use function Laravel\Prompts\error;
 class HomeController extends Controller
 {
     protected $usuarioDAO;
-    //protected $tableroDAO;
 
 
     public function __construct(UsuarioDAO $usuarioDAO)
     {
         $this->usuarioDAO = $usuarioDAO;
-        //$this->tableroDAO = $tableroDAO;
     }
 
     /**
@@ -57,11 +55,6 @@ class HomeController extends Controller
 
     public function register(Request $request)
     {
-        //$request->validate([
-        //    'nombre' => 'required|string|unique:usuarios,nombre',
-        //    'password' => 'required|string|min:6',
-        //]);
-
         $usuario = new Usuario();
         $usuario->setNombre($request->input('nombre'));
         $usuario->setPassword($request->input('password'));

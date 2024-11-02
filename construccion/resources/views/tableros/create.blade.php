@@ -11,10 +11,11 @@
         <h1>Crear Tablero</h1>
         <nav>
             <a href="{{ url('/home') }}">Volver a Mis Tableros</a>
-            <a href="{{ url('/logout') }}">Cerrar Sesión</a>
+            <a href="{{ url('/logout') }}" class="no-style">Cerrar Sesión</a>
         </nav>
     </header>
 
+    <div class=""></div>
     <main>
         <form method="POST" action="{{ url('/tableros') }}">
             @csrf

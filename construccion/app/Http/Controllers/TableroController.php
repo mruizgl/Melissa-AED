@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DAO\TableroDAO;
 use App\Models\Tablero;
+use App\Models\Figura; 
 use Illuminate\Support\Facades\DB;
-
-
 
 class TableroController extends Controller
 {
@@ -18,27 +17,22 @@ class TableroController extends Controller
         $this->tableroDAO = $tableroDAO;
     }
 
-
     public function create()
     {
         return view('tableros.create');
     }
 
-
     public function store(Request $request)
     {
-
         $request->validate([
             'nombre' => 'required|string|max:255',
         ]);
-
 
         $tablero = new Tablero();
         $tablero->setUsuarioId(session('usuario_id')); 
         $tablero->setNombre($request->input('nombre')); 
         $tablero->setContenido($request->input('contenido'));
         $tablero->setFecha(time()); 
-
 
         if ($this->tableroDAO->save($tablero)) {
             return redirect('/home')->with('success', 'Tablero creado exitosamente.');
@@ -49,26 +43,42 @@ class TableroController extends Controller
 
     public function edit($id)
     {
-        $figuras = Figura::all();
+        $tablero = DB::table('tableros')->where('id', $id)->first();
+        $figuras = DB::table('figuras')->get();
+        $figurasEnTablero = DB::table('figuras_tableros')->where('tablero_id', $id)->get();
 
-        return view('edit_tablero', compact('figuras'));
+        return view('edit_tablero', compact('tablero', 'figuras', 'figurasEnTablero'));
     }
 
-    public function addFigureToBoard(Request $request, $tableroId)
+    public function addFigure(Request $request)
     {
-    $request->validate([
-        'figura_id' => 'required|integer',
-        'posicion' => 'required|integer|unique:figuras_tableros,posicion,NULL,id,tablero_id,' . $tableroId,
-    ]);
+        $request->validate([
+            'figura_id' => 'required|integer',
+            'tablero_id' => 'required|integer',
+            'posicion' => 'required|integer',
+        ]);
 
-    DB::table('figuras_tableros')->insert([
-        'tablero_id' => $tableroId,
-        'figura_id' => $request->input('figura_id'),
-        'posicion' => $request->input('posicion'),
-    ]);
+        $figuraExistente = DB::table('figuras_tableros')
+            ->where('tablero_id', $request->tablero_id)
+            ->where('posicion', $request->posicion)
+            ->first();
 
-    return redirect()->back()->with('success', 'Figura añadida al tablero.');
+        if ($figuraExistente) {
+            DB::table('figuras_tableros')->where('id', $figuraExistente->id)->update([
+                'figura_id' => $request->figura_id,
+            ]);
+        } else {
+            DB::table('figuras_tableros')->insert([
+                'figura_id' => $request->figura_id,
+                'tablero_id' => $request->tablero_id,
+                'posicion' => $request->posicion,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Figura guardada correctamente');
     }
+
+    
 
     public function showBoard($id)
     {
@@ -85,4 +95,6 @@ class TableroController extends Controller
     
         return view('tableros.edit', compact('tablero', 'figurasEnTablero', 'figuras'));
     }
+    
+    
 }
