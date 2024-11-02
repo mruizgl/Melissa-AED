@@ -23,13 +23,13 @@
         @else
             <ul>
                 @foreach($tableros as $tablero)
-                    <li>
-                        <strong>{{ $tablero->getNombre() }}</strong><br>
-                        <em>{{ date('d/m/Y H:i:s', $tablero->getFecha()) }}</em>
-                        <br>
-                        <a href="{{ url('/tableros/' . $tablero->getId()) }}">Ver Tablero</a>
-                    </li>
-                @endforeach
+            <li>
+                <strong>{{ $tablero['nombre'] }}</strong><br> 
+                <em>{{ date('d/m/Y H:i:s', $tablero['fecha']) }}</em>
+                <br>
+                <a href="{{ url('/tableros/' . $tablero['id']) }}">Ver Tablero</a>
+            </li>
+        @endforeach
             </ul>
         @endif
     </main>

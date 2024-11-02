@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DAO\TableroDAO;
+use App\Models\Tablero;
+
 
 class TableroController extends Controller
 {
@@ -29,10 +32,11 @@ class TableroController extends Controller
 
 
         $tablero = new Tablero();
-        $tablero->setNombre($request->input('nombre'));
+        $tablero->setUsuarioId(session('usuario_id')); 
+        $tablero->setNombre($request->input('nombre')); 
         $tablero->setContenido($request->input('contenido'));
-        $tablero->setUsuarioId(session('usuario_id'));
         $tablero->setFecha(time()); 
+
 
         if ($this->tableroDAO->save($tablero)) {
             return redirect('/home')->with('success', 'Tablero creado exitosamente.');

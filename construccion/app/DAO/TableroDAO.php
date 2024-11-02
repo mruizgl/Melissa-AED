@@ -1,4 +1,3 @@
-
 <?php
 
 namespace App\DAO;
@@ -32,27 +31,27 @@ class TableroDAO implements ICrud
     public function save($tablero): bool
     {
         $pdo = DB::getPdo();
-        $pdo->beginTransaction();
-        try {
-            $stmt = $pdo->prepare('INSERT INTO ' . TableroContract::TABLE_NAME . ' (usuario_id, nombre, contenido, fecha) VALUES (:usuario_id, :nombre, :contenido, :fecha)');
+    $pdo->beginTransaction();
+    try {
+        $stmt = $pdo->prepare('INSERT INTO ' . TableroContract::TABLE_NAME . ' (usuario_id, nombre, contenido, fecha) VALUES (:usuario_id, :nombre, :contenido, :fecha)');
 
-            $fecha = time();
-            $stmt->bindParam(':usuario_id', $tablero->getUsuarioId());
-            $stmt->bindParam(':nombre', $tablero->getNombre());
-            $stmt->bindParam(':contenido', $tablero->getContenido());
-            $stmt->bindParam(':fecha', $fecha);
+        $fecha = time();
+        $stmt->bindValue(':usuario_id', $tablero->getUsuarioId());
+        $stmt->bindValue(':nombre', $tablero->getNombre());
+        $stmt->bindValue(':contenido', $tablero->getContenido());
+        $stmt->bindValue(':fecha', $fecha);
 
-            if ($stmt->execute()) {
-                $pdo->commit();
-                return true;
-            } else {
-                $pdo->rollBack();
-                return false;
-            }
-        } catch (\Exception $e) {
+        if ($stmt->execute()) {
+            $pdo->commit();
+            return true;
+        } else {
             $pdo->rollBack();
-            throw $e;
+            return false;
         }
+    } catch (\Exception $e) {
+        $pdo->rollBack();
+        throw $e;
+    }
     }
 
     public function update($tablero): bool

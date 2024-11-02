@@ -21,8 +21,6 @@
             <label for="nombre">Nombre del Tablero:</label>
             <input type="text" id="nombre" name="nombre" required>
 
-            <label for="contenido">Contenido (opcional):</label>
-            <textarea id="contenido" name="contenido"></textarea>
 
             <button type="submit">Crear Tablero</button>
         </form>

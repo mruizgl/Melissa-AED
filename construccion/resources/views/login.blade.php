@@ -19,8 +19,5 @@
         <p><a href="{{ url('/register') }}">Regístrate</a></p>
     </form>
 
-
-
-
 </body>
 </html>
