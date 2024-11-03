@@ -16,8 +16,14 @@
         <input type="password" id="password" name="password" required>
 
         <button type="submit">Iniciar Sesión</button>
+
+        @if ($errors->has('login_error'))
+            <div class="alert alert-danger">
+                {{ $errors->first('login_error') }}
+            </div>
+        @endif
+
         <p><a href="{{ url('/register') }}">Regístrate</a></p>
     </form>
-
 </body>
 </html>

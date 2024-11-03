@@ -4,30 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Tablero</title>
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
-    <header>
+    <header class="header">
         <h1>Crear Tablero</h1>
-        <nav>
-            <a href="{{ url('/home') }}">Volver a Mis Tableros</a>
-            <a href="{{ url('/logout') }}" class="no-style">Cerrar Sesión</a>
-        </nav>
     </header>
 
-    <div class=""></div>
-    <main>
-        <form method="POST" action="{{ url('/tableros') }}">
+    <main class="main-container">
+        <form method="POST" action="{{ url('/tableros') }}" class="form-container">
             @csrf
-            <label for="nombre">Nombre del Tablero:</label>
-            <input type="text" id="nombre" name="nombre" required>
+            <label for="nombre" class="form-label">Nombre del Tablero:</label>
+            <input type="text" id="nombre" name="nombre" class="form-input" required>
 
-
-            <button type="submit">Crear Tablero</button>
+            <button type="submit" class="form-button">Crear Tablero</button>
         </form>
 
         @if ($errors->any())
-            <div>
+            <div class="error-container">
                 <strong>Error:</strong>
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -36,6 +30,11 @@
                 </ul>
             </div>
         @endif
+
+        <nav class="nav-links">
+            <a href="{{ url('/home') }}" class="link">Volver a Mis Tableros</a>
+            <a href="{{ url('/logout') }}" class="link no-style">Cerrar Sesión</a>
+        </nav>
     </main>
 </body>
 </html>

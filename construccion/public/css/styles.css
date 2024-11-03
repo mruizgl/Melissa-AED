@@ -1,14 +1,12 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
 }
-
-
 
 form {
     background-color: white;
@@ -16,6 +14,8 @@ form {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    display: flex;
+    flex-direction: column; 
 }
 
 label {
@@ -51,3 +51,14 @@ p {
     margin-top: 10px;
 }
 
+.alert.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%; 
+    box-sizing: border-box; 
+    text-align: center; 
+}

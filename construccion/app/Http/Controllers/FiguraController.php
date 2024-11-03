@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DAO\TableroDAO;
+use App\DAO\FiguraDAO;
+use App\Contracts\ICrud;
 
 class FiguraController extends Controller
 {
-    protected $tableroDAO;
+    private $figuraDAO;
 
-    public function __construct(TableroDAO $tableroDAO)
+
+    public function __construct(FiguraDAO $figuraDAO)
     {
-        $this->tableroDAO = $tableroDAO;
+        $this->figuraDAO = $figuraDAO;
     }
 
+
+    //T
     public function create()
     {
         return view('tableros.create');
@@ -91,4 +97,46 @@ class FiguraController extends Controller
     
         return view('tableros.edit', compact('tablero', 'figurasEnTablero', 'figuras'));
     }
+
+    //
+    public function createFigura()
+    {
+        $figuras = $this->figuraDAO->findAll();
+
+        return view('figuras.create', compact('figuras'));
+    }
+
+        public function storeFigura(Request $request)
+        {
+        $request->validate([
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+            $fileName = time() . '.' . $request->imagen->extension();
+    
+            $request->imagen->move(public_path('images'), $fileName);
+    
+            $daoData = [
+                'imagen' => $fileName, 
+                'tipo_imagen' => $request->imagen->getClientMimeType()
+            ];
+    
+            $this->figuraDAO->save($daoData);
+    
+            return redirect()->route('figuras.create')->with('success', 'Imagen subida exitosamente.');
+        }
+    
+        return redirect()->route('figuras.create')->withErrors(['imagen' => 'Error al subir la imagen.']);
+    }
+
+    public function destroy($id)
+    {
+
+        $this->figuraDAO->delete($id);
+
+        return redirect()->route('figuras.create')->with('success', 'Imagen eliminada exitosamente.');
+    }
+
+   
 }

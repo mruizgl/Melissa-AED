@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TableroController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\FiguraController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,4 +41,19 @@ Route::post('/tableros', [TableroController::class, 'store']);
 Route::get('/tableros/{id}', [TableroController::class, 'showBoard'])->name('tableros.show');
 Route::post('/tableros/add-figure', [TableroController::class, 'addFigure'])->name('tableros.addFigure');
 
+/**
+ * Gestion de usuarios
+ */
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
+/**
+ * Figuras
+ */
+Route::get('/admin/figuras', [FiguraController::class, 'index'])->name('figuras.index'); 
+Route::get('/admin/figuras/create', [FiguraController::class, 'createFigura'])->name('figuras.create'); 
+Route::post('/admin/figuras', [FiguraController::class, 'storeFigura'])->name('figuras.store');
+Route::resource('figuras', 'FiguraController');

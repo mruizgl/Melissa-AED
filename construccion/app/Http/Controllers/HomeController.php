@@ -75,7 +75,10 @@ class HomeController extends Controller
         $usuarioId = $request->session()->get('usuario_id');
         $usuario = $this->usuarioDAO->findById($usuarioId);
         $tableros = Tablero::where('usuario_id', $usuarioId)->get();
-        return view('home', compact('tableros', 'usuario'));
+        
+        $isAdmin = $usuario->getRolId() === 2;
+    
+        return view('home', compact('tableros', 'usuario', 'isAdmin'));
     }
 
 }
