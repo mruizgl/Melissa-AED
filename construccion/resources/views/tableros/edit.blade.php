@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Tablero</title>
     <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
-
 </head>
 <body>
     <header>
@@ -30,7 +29,7 @@
                             $figura = $figurasEnTablero->where('posicion', $row * 7 + $col)->first();
                         @endphp
                         @if($figura)
-                            <img src="data:image/png;base64,{{ base64_encode($figura->imagen) }}" alt="{{ $figura->tipo_imagen }}">
+                            <img src="data:image/png;base64,{{ base64_encode($figura->imagen) }}" alt="{{ $figura->tipo_imagen }}" style="max-width:100%; height:auto;">
                         @endif
                     </div>
                 @endfor

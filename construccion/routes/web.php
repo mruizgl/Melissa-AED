@@ -53,7 +53,6 @@ Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.de
 /**
  * Figuras
  */
-Route::get('/admin/figuras', [FiguraController::class, 'index'])->name('figuras.index'); 
-Route::get('/admin/figuras/create', [FiguraController::class, 'createFigura'])->name('figuras.create'); 
-Route::post('/admin/figuras', [FiguraController::class, 'storeFigura'])->name('figuras.store');
-Route::resource('figuras', 'FiguraController');
+Route::get('admin/figuras/create', [FiguraController::class, 'createFigura'])->name('figuras.create');
+Route::post('/figuras', [FiguraController::class, 'storeFigura'])->name('figuras.store');
+Route::delete('/figuras/{id}', [FiguraController::class, 'destroy'])->name('figuras.destroy');

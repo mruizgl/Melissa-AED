@@ -71,3 +71,17 @@ div a {
 div a:hover {
     background-color: #0056b3;
 }
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+}
+.image-item {
+    margin: 10px;
+    text-align: center;
+}
+.image-item img {
+    max-width: 150px;
+    height: auto;
+    display: block;
+}

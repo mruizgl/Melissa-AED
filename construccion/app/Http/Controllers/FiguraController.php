@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\DAO\TableroDAO;
 use App\DAO\FiguraDAO;
 use App\Contracts\ICrud;
+use App\Contracts\FiguraContract;
 
 class FiguraController extends Controller
 {
@@ -21,9 +22,11 @@ class FiguraController extends Controller
     //T
     public function create()
     {
-        return view('tableros.create');
+        return view('figuras.create');
     }
 
+  
+     
     public function store(Request $request)
     {
         $request->validate([
@@ -42,7 +45,7 @@ class FiguraController extends Controller
             return back()->withErrors(['save_error' => 'Error al guardar el tablero.']);
         }
     }
-
+    
     public function edit($id)
     {
         $tablero = DB::table('tableros')->where('id', $id)->first();
@@ -102,41 +105,35 @@ class FiguraController extends Controller
     public function createFigura()
     {
         $figuras = $this->figuraDAO->findAll();
-
         return view('figuras.create', compact('figuras'));
     }
 
-        public function storeFigura(Request $request)
-        {
+    public function storeFigura(Request $request)
+    {
         $request->validate([
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación
         ]);
-
-        if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
-            $fileName = time() . '.' . $request->imagen->extension();
     
-            $request->imagen->move(public_path('images'), $fileName);
+        // Lee el contenido del archivo
+        $imageContent = file_get_contents($request->file('imagen')->getRealPath());
+        $imageType = $request->file('imagen')->getClientOriginalExtension(); // Tipo de imagen
     
-            $daoData = [
-                'imagen' => $fileName, 
-                'tipo_imagen' => $request->imagen->getClientMimeType()
-            ];
+        // Guarda la imagen en la base de datos como BLOB
+        $this->figuraDAO->save([
+            FiguraContract::COL_IMAGEN => $imageContent, // Aquí guardas el contenido de la imagen
+            FiguraContract::COL_TIPO_IMAGEN => $imageType, // Guarda el tipo de imagen
+        ]);
     
-            $this->figuraDAO->save($daoData);
-    
-            return redirect()->route('figuras.create')->with('success', 'Imagen subida exitosamente.');
-        }
-    
-        return redirect()->route('figuras.create')->withErrors(['imagen' => 'Error al subir la imagen.']);
+        return redirect()->route('figuras.create')->with('success', 'Imagen subida exitosamente.');
     }
 
     public function destroy($id)
     {
-
         $this->figuraDAO->delete($id);
-
         return redirect()->route('figuras.create')->with('success', 'Imagen eliminada exitosamente.');
     }
+
+
 
    
 }
