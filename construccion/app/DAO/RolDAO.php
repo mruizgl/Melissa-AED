@@ -7,8 +7,15 @@ use App\Contracts\ICrud;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\RolContract;
 
+/**
+ * @author Melissa Ruiz
+ * Clase DAO de Rol
+ */
 class RolDAO implements ICrud
 {
+    /**
+     * Obtener todos los datos
+     */
     public function findAll(): array
     {
         $pdo = DB::getPdo();
@@ -25,6 +32,9 @@ class RolDAO implements ICrud
         return $roles;
     }
 
+    /**
+     * Guardar rol
+     */
     public function save($rol): bool
     {
         $pdo = DB::getPdo();
@@ -32,6 +42,10 @@ class RolDAO implements ICrud
         return $stmt->execute(['nombre' => $rol->getNombre()]);
     }
 
+    /**
+     * Obtener por id
+     * @param id de Rol
+     */
     public function findById($id): ?Rol
     {
         $pdo = DB::getPdo();
@@ -49,6 +63,11 @@ class RolDAO implements ICrud
         return null;
     }
 
+    
+     /**
+     * Actualizar rol
+     * @param id de Rol
+     */
     public function update($rol): bool
     {
         $pdo = DB::getPdo();
@@ -59,6 +78,10 @@ class RolDAO implements ICrud
         ]);
     }
 
+    /**
+     * Funcion para eliminar por id el Rol
+     * @param id del Rol
+     */
     public function delete($id): bool
     {
         $pdo = DB::getPdo();

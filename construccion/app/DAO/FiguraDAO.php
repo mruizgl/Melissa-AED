@@ -6,8 +6,16 @@ use App\Contracts\ICrud;
 use App\Contracts\FiguraContract;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * @author Melissa Ruiz
+ * Clase del Data Access Object de Figura
+ */
 class FiguraDAO implements ICrud
 {
+    /**
+     * Obtiene todas las figuras del sistema
+     * @return array Arreglo de figuras
+     */
     public function findAll(): array
     {
         $pdo = DB::getPdo();
@@ -25,6 +33,9 @@ class FiguraDAO implements ICrud
         return $figuras;
     }
 
+    /**
+     * Guardar / actualizar las figuras
+     */
     public function save($dao): bool 
     {
         $pdo = DB::getPdo();
@@ -35,6 +46,9 @@ class FiguraDAO implements ICrud
         ]);
     }
 
+    /**
+     * Encontrar por id
+     */
     public function findById($id): ?array
     {
         $pdo = DB::getPdo();
@@ -53,6 +67,10 @@ class FiguraDAO implements ICrud
         return null; 
     }
 
+    /**
+     * Funcion para actualizar Figura
+     * @param $dao 
+     */
     public function update($dao): bool
     {
         $pdo = DB::getPdo();
@@ -64,6 +82,10 @@ class FiguraDAO implements ICrud
         ]);
     }
 
+    /**
+     * Funcion para eliminar Figura
+     * @param $id de Figura
+     */
     public function delete($id): bool
     {
         $pdo = DB::getPdo();

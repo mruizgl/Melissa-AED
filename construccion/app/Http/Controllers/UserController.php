@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\DAO\UsuarioDAO;
 
+/**
+ * Controlador de la gestión de usuarios de la aplicacion
+ * @author Melissa Ruiz
+ */
 class UserController extends Controller
 {
     protected $usuarioDAO;

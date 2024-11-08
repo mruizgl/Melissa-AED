@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Tableros</title>
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <meta name="author" content="Melissa Ruiz">
 </head>
 <body>
 

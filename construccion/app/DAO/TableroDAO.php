@@ -7,8 +7,15 @@ use App\Contracts\ICrud;
 use Illuminate\Support\Facades\DB;
 use App\Contracts\TableroContract;
 
+/**
+ * Clase DAO del Tablero 
+ * @author Melissa Ruiz
+ */
 class TableroDAO implements ICrud
 {
+    /**
+     * Obtener todos los datos
+     */
     public function findAll(): array
     {
         $pdo = DB::getPdo();
@@ -28,6 +35,9 @@ class TableroDAO implements ICrud
         return $tableros;
     }
 
+    /**
+     * Guardar rol
+     */
     public function save($tablero): bool
     {
         $pdo = DB::getPdo();
@@ -54,6 +64,10 @@ class TableroDAO implements ICrud
     }
     }
 
+    /**
+     * Obtener por id
+     * @param id de Rol
+     */
     public function update($tablero): bool
     {
         $pdo = DB::getPdo();
@@ -80,6 +94,10 @@ class TableroDAO implements ICrud
         }
     }
 
+     /**
+     * Actualizar rol
+     * @param id de Rol
+     */
     public function delete($id): bool
     {
         $pdo = DB::getPdo();
@@ -102,7 +120,10 @@ class TableroDAO implements ICrud
     }
 
 
-
+    /**
+     * Funcion para eliminar por id el Rol
+     * @param id del Tablero
+     */
     public function findById($id): ?Tablero
     {
         $pdo = DB::getPdo();

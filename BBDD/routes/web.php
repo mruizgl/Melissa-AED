@@ -2,6 +2,7 @@
 
 use App\Models\Alumno;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $alumno = Alumno::find(1);
-    return view('welcome');
-});
+Route::get('/veralumno/{id}', [AlumnoController::class, 'show']);
+
+Route::get('/listar', [AlumnoController::class, 'listar']);
+
+Route::get('/crear-historico-dolar', [AlumnoController::class, 'crearHistoricoDolar']);

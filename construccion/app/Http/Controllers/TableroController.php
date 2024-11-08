@@ -8,6 +8,10 @@ use App\Models\Tablero;
 use App\Models\Figura; 
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Controlador del tablero de la aplicacion
+ * @author Melissa Ruiz
+ */
 class TableroController extends Controller
 {
     protected $tableroDAO;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Tablero</title>
     <link rel="stylesheet" href="{{ asset('css/edit.css') }}">
+    <meta name="author" content="Melissa Ruiz">
 </head>
 <body>
     <header>

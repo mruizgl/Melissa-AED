@@ -10,6 +10,10 @@ use App\Models\Tablero;
 
 use function Laravel\Prompts\error;
 
+/**
+ * Controlador de la vista de home de la aplicacion
+ * @author Melissa Ruiz
+ */
 class HomeController extends Controller
 {
     protected $usuarioDAO;
