@@ -74,5 +74,31 @@ class AlumnoController extends Controller
         }
     }
 
+    public function practica17()
+    {
+        // 1. Crear la moneda con create()
+        Moneda::create([
+            'nombre' => 'dólar',
+            'pais' => 'Australia',
+        ]);
+
+        // 2. Buscar la moneda por país
+        $moneda = Moneda::where('pais', 'Australia')->first();
+
+        // 3. Mostrar el resultado de la búsqueda
+        echo "Moneda creada: " . json_encode($moneda, JSON_UNESCAPED_UNICODE) . "<br>";
+
+        // 4. Modificar el campo 'pais' a mayúsculas
+        $moneda->pais = 'AUSTRALIA';
+
+        // 5. Guardar los cambios usando save()
+        $moneda->save();
+
+        // 6. Mostrar el resultado después de modificar
+        echo "Moneda modificada: " . json_encode($moneda, JSON_UNESCAPED_UNICODE) . "<br>";
+    }
+
+   
+
 
 }

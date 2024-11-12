@@ -20,3 +20,5 @@ Route::get('/veralumno/{id}', [AlumnoController::class, 'show']);
 Route::get('/listar', [AlumnoController::class, 'listar']);
 
 Route::get('/crear-historico-dolar', [AlumnoController::class, 'crearHistoricoDolar']);
+
+Route::get('/practica17', [AlumnoController::class, 'practica17']);
