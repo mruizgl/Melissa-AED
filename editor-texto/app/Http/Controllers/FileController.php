@@ -23,21 +23,18 @@ class FileController extends Controller
         $usuario = $request->session()->get('usuario');
 
         if (!$file || !$usuario) {
-            dd('Valores de sesión no disponibles: ', $file, $usuario);
+            //dd('Valores de sesión no disponibles: ', $file, $usuario);
         }
 
         $filePath = "private/{$usuario}/{$file}_{$usuario}.txt";
 
         if (Storage::disk('local')->exists($filePath)) {
-            $contenido = Storage::disk('local')->get($filePath);
+            //$contenido = Storage::disk('local')->get($filePath);
         } else {
-            dd('El archivo no existe en la ruta especificada: ' . $filePath);
+            //dd('El archivo no existe en la ruta especificada: ' . $filePath);
         }
 
-        return view('editor', [
-            'contenido' => $contenido,
-            'file_name' => $file,
-        ]);
+        return view('editor');
     }
 
     public function storeFile(Request $request)

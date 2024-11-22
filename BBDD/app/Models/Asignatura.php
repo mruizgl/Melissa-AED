@@ -24,4 +24,6 @@ class Asignatura extends Model
     {
         return $this->hasMany('App\Models\AsignaturaMatricula', 'idasignatura');
     }
+
+    
 }

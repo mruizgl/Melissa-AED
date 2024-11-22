@@ -21,7 +21,7 @@
         @csrf
         <input type="hidden" name="contenido" id="contenido">
         <input type="hidden" name="file_type" value="{{ session('file_type') }}">
-        <textarea id="editor">{{ $contenido }}</textarea><br /> <!-- Aquí se carga el contenido -->
+        <textarea id="editor"></textarea><br /> <!-- Aquí se carga el contenido -->
         <input type="submit" value="Guardar"><br />
     </form>
 

@@ -98,6 +98,102 @@ class AlumnoController extends Controller
         echo "Moneda modificada: " . json_encode($moneda, JSON_UNESCAPED_UNICODE) . "<br>";
     }
 
+
+    public function guardar(Request $request)
+    {
+        $request->validate([
+            'pais' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'equivalenteeuro' => 'required|numeric',
+            'fecha' => 'required|date',
+        ]);
+
+        try {
+            DB::transaction(function () use ($request) {
+                // Guardar la moneda
+                $moneda = Moneda::create([
+                    'pais' => $request->pais,
+                    'nombre' => $request->nombre,
+                ]);
+
+                // Validar si el equivalente es numérico antes de guardar
+                if (!is_numeric($request->equivalenteeuro)) {
+                    throw new \Exception('El equivalente al euro debe ser un número');
+                }
+
+                // Guardar el histórico
+                Historico::create([
+                    'moneda_id' => $moneda->id,
+                    'equivalenteeuro' => $request->equivalenteeuro,
+                    'fecha' => $request->fecha,
+                ]);
+            });
+
+            return redirect()->back()->with('success', 'Moneda e histórico guardados correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function buscarMatriculas()
+    {
+        // Buscar matrículas para alumnos que incluyen "Ana" en su nombre y hechas después de 2020
+        $resultados = DB::table('matriculas')
+            ->join('alumnos', 'matriculas.dni', '=', 'alumnos.dni')
+            ->where('alumnos.nombre', 'LIKE', '%Ana%') // Buscamos "Ana" en el nombre
+            ->where('matriculas.year', '>', 2020) // Año mayor que 2020
+            ->select('matriculas.*', 'alumnos.nombre as alumno_nombre', 'alumnos.dni as alumno_dni')
+            ->get();
+
+        // Mostrar los resultados (por ejemplo, en formato JSON)
+        return response()->json($resultados);
+    }
+    public function crearObjetos()
+    {
+        DB::transaction(function () {
+            // Crear el alumno Elvira
+            $alumnoId = DB::table('alumnos')->insertGetId([
+                'nombre' => 'Elvira',
+                'apellidos' => 'Lindo',
+                'dni' => '35792468Q',
+                'created_at' => now(),
+                'updated_at' => now(),
+                'fecha_nacimiento' => date('Y-m-d H:i:s', 821234400000 / 1000), // Convertir el timestamp de milisegundos a segundos
+            ]);
+
+            // Crear la matrícula para Elvira en el año 2024
+            $matriculaId = DB::table('matriculas')->insertGetId([
+                'dni' => '35792468Q',
+                'year' => 2024,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            // Obtener los IDs de las asignaturas PRO y LND
+            $asignaturas = DB::table('asignaturas')
+                ->whereIn('nombre', ['PRO', 'LND'])
+                ->pluck('id');
+
+            // Insertar en la tabla intermedia asignatura_matricula
+            foreach ($asignaturas as $asignaturaId) {
+                DB::table('asignatura_matricula')->insert([
+                    'idasignatura' => $asignaturaId,
+                    'idmatricula' => $matriculaId,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        });
+
+        return "Objetos creados con éxito.";
+    }
+    use App\Http\Controllers\AlumnoController;
+
+    
+
+
+
+
    
 
 

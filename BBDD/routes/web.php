@@ -22,3 +22,9 @@ Route::get('/listar', [AlumnoController::class, 'listar']);
 Route::get('/crear-historico-dolar', [AlumnoController::class, 'crearHistoricoDolar']);
 
 Route::get('/practica17', [AlumnoController::class, 'practica17']);
+
+Route::get('/moneda', function () {
+    return view('formulario');
+})->name('moneda.form');
+
+Route::post('/moneda/guardar', [AlumnoController::class, 'guardar'])->name('moneda.guardar');
