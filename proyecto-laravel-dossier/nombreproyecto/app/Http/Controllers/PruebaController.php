@@ -83,17 +83,6 @@ class PruebaController extends Controller
         return view('lista', compact('palabras'));
     }
 
-    public function index()
-    {
-        // Obtener los datos del usuario desde la sesión
-        $usuario = session('usuario', [
-            'nombre' => '',
-            'edad' => '',
-            'gustos' => '',
-        ]);
-        
-        return view('usuario.index', compact('usuario'));
-    }
 
     public function store(Request $request)
     {
@@ -136,6 +125,58 @@ class PruebaController extends Controller
         
         // Pasar los datos a la vista
         return view('csv.show', compact('data'));
+    }
+
+    public function index()
+    {
+        return view('primos');
+    }
+
+    // Maneja la lógica para calcular los números primos
+    public function calcular(Request $request)
+    {
+        $cantidad = $request->input('cantidad');
+
+        // Validar entrada
+        if (!is_numeric($cantidad) || $cantidad <= 0) {
+            return back()->withErrors(['cantidad' => 'Por favor, introduce un número válido mayor que 0.']);
+        }
+
+        try {
+            $primos = $this->generarPrimos($cantidad);
+            return view('resultado', compact('primos', 'cantidad'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Ocurrió un error al calcular los números primos.']);
+        }
+    }
+
+    // Lógica para calcular números primos
+    private function generarPrimos($cantidad)
+    {
+        $primos = [];
+        $numero = 2;
+
+        while (count($primos) < $cantidad) {
+            if ($this->esPrimo($numero)) {
+                $primos[] = $numero;
+            }
+            $numero++;
+        }
+
+        return $primos;
+    }
+
+    // Verifica si un número es primo
+    private function esPrimo($num)
+    {
+        if ($num < 2) return false;
+        if ($num === 2) return true;
+        if ($num % 2 === 0) return false;
+        $limite = sqrt($num);
+        for ($i = 3; $i <= $limite; $i += 2) {
+            if ($num % $i === 0) return false;
+        }
+        return true;
     }
 
     

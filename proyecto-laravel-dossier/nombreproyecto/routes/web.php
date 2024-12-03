@@ -18,12 +18,13 @@ use App\Http\Controllers\PruebaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-/**
-Route::get('/', function () {
-    echo "página raíz de nuestra aplicación";
-    die();
-});
-*/
+
+use App\Http\Controllers\PrimosController;
+
+Route::get('/', [PrimosController::class, 'index']);
+Route::post('/calcular', [PrimosController::class, 'calcular']);
+
+
 Route::get('/pruebita', function () {
     echo "se ha ejecutado peticion a /pruebita";
     die();
@@ -46,9 +47,9 @@ Route::get('/procesarformulario', [PruebaController::class, 'procesarform']);
 Route::post('/fileupload', '\App\Http\Controllers\PruebaController@subir');
 
 
-Route::get('/', [ListarProductos::class, 'mostrarget']);
+//Route::get('/', [ListarProductos::class, 'mostrarget']);
 
-Route::post('/', [ListarProductos::class, 'mostrarpost']);
+//Route::post('/', [ListarProductos::class, 'mostrarpost']);
 
 Route::get('/aleatorios', [PruebaController::class, 'mostrarNumerosAleatorios']);
 
