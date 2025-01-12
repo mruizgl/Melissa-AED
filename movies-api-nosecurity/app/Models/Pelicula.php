@@ -21,8 +21,4 @@ class Pelicula extends Model
         return $this->belongsToMany('App\Models\Director','directores_peliculas', 'pelicula_id', 'director_id');
     }
 
-    public function categoriasPeliculas()
-    {
-        return $this->belongsToMany('App\Models\Category', 'categorias_peliculas', 'pelicula_id', 'categoria_id');
-    }
 }

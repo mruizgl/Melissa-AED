@@ -16,6 +16,6 @@ class Director extends Model
 
     public function directoresPeliculas()
     {
-        return $this->belongsToMany('App\Models\Movie', 'directores_peliculas', 'director_id', 'pelicula_id');
+        return $this->belongsToMany('App\Models\Pelicula', 'directores_peliculas', 'director_id', 'pelicula_id');
     }
 }
