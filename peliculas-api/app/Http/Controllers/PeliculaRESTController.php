@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers;
 
-use App\Models\Director;
-use App\Http\Requests\StoreDirectorRequest;
-use App\Http\Requests\UpdateDirectorRequest;
-use App\Http\Controllers\Controller;
 
-class DirectorController extends Controller
+use App\Models\Pelicula;
+use Illuminate\Http\Request;
+
+class PeliculaRESTController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return Pelicula::all();
     }
 
     /**
@@ -28,7 +27,7 @@ class DirectorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDirectorRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class DirectorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Director $director)
+    public function show(Pelicula $pelicula)
     {
         //
     }
@@ -44,7 +43,7 @@ class DirectorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Director $director)
+    public function edit(Pelicula $pelicula)
     {
         //
     }
@@ -52,7 +51,7 @@ class DirectorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDirectorRequest $request, Director $director)
+    public function update(Request $request, Pelicula $pelicula)
     {
         //
     }
@@ -60,7 +59,7 @@ class DirectorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Director $director)
+    public function destroy(Pelicula $pelicula)
     {
         //
     }

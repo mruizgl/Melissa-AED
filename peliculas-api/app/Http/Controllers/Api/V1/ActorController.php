@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\Actor;
 use App\Http\Requests\StoreActorRequest;
 use App\Http\Requests\UpdateActorRequest;
+use App\Http\Controllers\Controller;
 
 class ActorController extends Controller
 {
@@ -13,7 +14,7 @@ class ActorController extends Controller
      */
     public function index()
     {
-        //
+        return Actor::all();
     }
 
     /**
