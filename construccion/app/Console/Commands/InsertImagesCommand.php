@@ -37,3 +37,4 @@ class InsertImagesCommand extends Command
 
 //php artisan make:command InsertImagesCommand
 //php artisan images:insert
+ 
