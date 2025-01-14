@@ -1,0 +1,53 @@
+.create-movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .create-movie-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .create-movie-input,
+  .create-movie-textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .create-movie-button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .create-movie-button:hover {
+    background-color: #218838;
+  }
+  
+  .movie-image {
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .movie-image-preview {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .checkbox-label {
+    margin: 10px 0;
+  }
+  

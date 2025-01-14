@@ -1,0 +1,86 @@
+body {
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Modo diurno */
+body.day {
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+body.day h1 {
+  color: #282c59;
+}
+
+/* Modo nocturno */
+body.night {
+  background-color: #121212;
+  color: #fff;
+}
+
+body.night h1 {
+  color: #d1d1d1;
+}
+
+/* Estilos adicionales de la app (si se necesitan) */
+button {
+  background-color: #61dafb;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3d98b7;
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-right: 20px;
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.2);
+}
+
+.theme-toggle-btn:focus {
+  outline: none;
+}
+
+/* Estilos para el modo nocturno */
+body.night {
+  background-color: #282c34;
+  color: #fff;
+}
+
+body.night .movie-card {
+  background-color: #333;
+  color: #fff;
+}
+
+body.night .movie-info p,
+body.night .movie-info h2 {
+  color: #ccc;
+}
+
+/* Estilos para el modo diurno */
+body.day {
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+body.day .movie-card {
+  background-color: #fff;
+  color: #333;
+}
+
+body.day .movie-info p,
+body.day .movie-info h2 {
+  color: #282c59;
+}
