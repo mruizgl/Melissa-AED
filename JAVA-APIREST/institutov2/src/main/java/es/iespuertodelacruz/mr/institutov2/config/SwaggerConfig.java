@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.nla.institutov2.config;
+package es.iespuertodelacruz.mr.institutov2.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

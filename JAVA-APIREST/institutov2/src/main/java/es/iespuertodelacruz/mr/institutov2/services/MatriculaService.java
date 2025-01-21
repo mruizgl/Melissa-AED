@@ -1,11 +1,11 @@
-package es.iespuertodelacruz.nla.institutov2.services;
+package es.iespuertodelacruz.mr.institutov2.services;
 
-import es.iespuertodelacruz.nla.institutov2.entities.Alumno;
-import es.iespuertodelacruz.nla.institutov2.entities.Asignatura;
-import es.iespuertodelacruz.nla.institutov2.entities.Matricula;
-import es.iespuertodelacruz.nla.institutov2.repository.IAlumnoRepository;
-import es.iespuertodelacruz.nla.institutov2.repository.IAsignaturaRepository;
-import es.iespuertodelacruz.nla.institutov2.repository.IMatriculaRepository;
+import es.iespuertodelacruz.mr.institutov2.entities.Alumno;
+import es.iespuertodelacruz.mr.institutov2.entities.Asignatura;
+import es.iespuertodelacruz.mr.institutov2.entities.Matricula;
+import es.iespuertodelacruz.mr.institutov2.repository.IAlumnoRepository;
+import es.iespuertodelacruz.mr.institutov2.repository.IAsignaturaRepository;
+import es.iespuertodelacruz.mr.institutov2.repository.IMatriculaRepository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

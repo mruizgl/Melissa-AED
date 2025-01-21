@@ -1,6 +1,6 @@
-package es.iespuertodelacruz.nla.institutov2.dto;
+package es.iespuertodelacruz.mr.institutov2.dto;
 
-import es.iespuertodelacruz.nla.institutov2.entities.Matricula;
+import es.iespuertodelacruz.mr.institutov2.entities.Matricula;
 
 import java.util.Date;
 import java.util.List;

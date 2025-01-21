@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.nla.institutov2.entities;
+package es.iespuertodelacruz.mr.institutov2.entities;
 
 import jakarta.persistence.AttributeConverter;
 

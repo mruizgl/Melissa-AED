@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.nla.institutov2.repository;
+package es.iespuertodelacruz.mr.institutov2.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import es.iespuertodelacruz.nla.institutov2.entities.Matricula;
+import es.iespuertodelacruz.mr.institutov2.entities.Matricula;
 
 @Repository
 public interface IMatriculaRepository extends JpaRepository<Matricula, Integer>{

@@ -1,8 +1,8 @@
-package es.iespuertodelacruz.nla.institutov2.controller;
+package es.iespuertodelacruz.mr.institutov2.controller;
 
 import java.util.logging.Logger;
-import es.iespuertodelacruz.nla.institutov2.dto.AlumnoDTO;
-import es.iespuertodelacruz.nla.institutov2.services.AlumnoService;
+import es.iespuertodelacruz.mr.institutov2.dto.AlumnoDTO;
+import es.iespuertodelacruz.mr.institutov2.services.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

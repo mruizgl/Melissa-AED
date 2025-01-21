@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.nla.institutov2.controller;
+package es.iespuertodelacruz.mr.institutov2.controller;
 
 import es.iespuertodelacruz.nla.institutov2.entities.Matricula;
 import es.iespuertodelacruz.nla.institutov2.services.MatriculaService;

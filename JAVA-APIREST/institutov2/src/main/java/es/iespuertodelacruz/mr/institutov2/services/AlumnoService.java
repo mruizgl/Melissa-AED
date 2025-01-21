@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.nla.institutov2.services;
+package es.iespuertodelacruz.mr.institutov2.services;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import es.iespuertodelacruz.nla.institutov2.entities.Alumno;
-import es.iespuertodelacruz.nla.institutov2.repository.IAlumnoRepository;
+import es.iespuertodelacruz.mr.institutov2.entities.Alumno;
+import es.iespuertodelacruz.mr.institutov2.repository.IAlumnoRepository;
 
 @Service
 public class AlumnoService implements IServiceGeneric<Alumno, String>{
