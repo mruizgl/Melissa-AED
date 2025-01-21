@@ -8,7 +8,7 @@
 		<version>3.4.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>es.iespuerto.mr</groupId>
+	<groupId>es.iespuertodelacruz.nla</groupId>
 	<artifactId>institutov2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>institutov2</name>
@@ -55,7 +55,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
 	      <groupId>org.springdoc</groupId>
 	      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
