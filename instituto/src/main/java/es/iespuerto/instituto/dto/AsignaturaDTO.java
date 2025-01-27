@@ -1,6 +1,5 @@
 package es.iespuerto.instituto.dto;
 
-import java.util.List;
 
 public record AsignaturaDTO(
         int id,

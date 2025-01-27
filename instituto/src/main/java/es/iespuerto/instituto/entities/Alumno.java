@@ -37,6 +37,8 @@ public class Alumno implements Serializable {
     public Alumno() {
     }
 
+
+
     public String getImagen() {
         return imagen;
     }

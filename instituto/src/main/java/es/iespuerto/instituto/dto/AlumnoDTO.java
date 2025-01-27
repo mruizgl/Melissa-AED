@@ -1,9 +1,9 @@
 package es.iespuerto.instituto.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public record AlumnoDTO(
         String dni,
@@ -11,11 +11,6 @@ public record AlumnoDTO(
         String apellidos,
         Date fechanacimiento,
         String imagen,
-        List<MatriculaDTO> matriculas
-) {
-    @JsonIgnore
-  public List<MatriculaDTO> matriculas(){
-      return matriculas;
-  }
+        @JsonIgnore List<MatriculaDTO> matriculas
+) {}
 
-}
