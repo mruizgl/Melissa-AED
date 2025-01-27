@@ -15,40 +15,39 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class AlumnoService implements IServiceGeneric<Alumno, AlumnoDTO, String> {
+public class AlumnoService implements IServiceGeneric<Alumno, String> {
     private static final Logger logger = LoggerFactory.getLogger(AlumnoRESTController.class);
 
     @Autowired
     private IAlumnoRepository repository;
 
-    private final AlumnoMapper alumnoMapper = AlumnoMapper.INSTANCE;
 
     @Override
-    public List<AlumnoDTO> findAll() {
+    public List<Alumno> findAll() {
         List<Alumno> alumnos = repository.findAll();
         if (alumnos.isEmpty()) {
             logger.info("No se encontraron alumnos.");
         }
-        return alumnos.stream()
-                .map(alumnoMapper::alumnoToAlumnoDTO)
-                .collect(Collectors.toList());
+        return alumnos;
     }
 
+
     @Override
-    public AlumnoDTO findById(String id) {
+    public Alumno findById(String id) {
         Alumno alumno = repository.findById(id).orElse(null);
         if (alumno == null) {
             logger.info("Alumno no encontrado con DNI: " + id);
         }
-        return alumno != null ? alumnoMapper.alumnoToAlumnoDTO(alumno) : null;
+        return alumno;
     }
 
     @Override
     @Transactional
-    public AlumnoDTO save(Alumno alumno) {
+    public Alumno save(Alumno alumno) {
         Alumno savedAlumno = repository.save(alumno);
-        return alumnoMapper.alumnoToAlumnoDTO(savedAlumno);
+        return savedAlumno;
     }
+
 
     @Override
     @Transactional
@@ -73,5 +72,14 @@ public class AlumnoService implements IServiceGeneric<Alumno, AlumnoDTO, String>
         }
         return false;
     }
+    /**
+     * List<Alumno> alumnos = repository.findAll();
+     *         if (alumnos.isEmpty()) {
+     *             logger.info("No se encontraron alumnos.");
+     *         }
+     *         return alumnos.stream()
+     *                 .map(alumnoMapper::alumnoToAlumnoDTO)
+     *                 .collect(Collectors.toList());
+     */
 }
 

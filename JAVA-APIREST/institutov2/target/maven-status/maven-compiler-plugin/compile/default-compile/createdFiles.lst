@@ -1,0 +1,17 @@
+es/iespuertodelacruz/mr/institutov2/entities/Alumno.class
+es/iespuertodelacruz/mr/institutov2/controller/MatriculaRESTController.class
+es/iespuertodelacruz/mr/institutov2/config/SwaggerConfig.class
+es/iespuertodelacruz/mr/institutov2/config/DatabaseConfig.class
+es/iespuertodelacruz/mr/institutov2/controller/AlumnoRESTController.class
+es/iespuertodelacruz/mr/institutov2/repository/IMatriculaRepository.class
+es/iespuertodelacruz/mr/institutov2/Institutov2Application.class
+es/iespuertodelacruz/mr/institutov2/repository/IAlumnoRepository.class
+es/iespuertodelacruz/mr/institutov2/entities/User.class
+es/iespuertodelacruz/mr/institutov2/services/IServiceGeneric.class
+es/iespuertodelacruz/mr/institutov2/dto/AlumnoDTO.class
+es/iespuertodelacruz/mr/institutov2/services/AlumnoService.class
+es/iespuertodelacruz/mr/institutov2/entities/Matricula.class
+es/iespuertodelacruz/mr/institutov2/entities/DateToLongConverter.class
+es/iespuertodelacruz/mr/institutov2/repository/IAsignaturaRepository.class
+es/iespuertodelacruz/mr/institutov2/entities/Asignatura.class
+es/iespuertodelacruz/mr/institutov2/services/MatriculaService.class

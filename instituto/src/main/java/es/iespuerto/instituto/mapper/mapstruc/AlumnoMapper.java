@@ -13,11 +13,6 @@ import java.util.Date;
 public interface AlumnoMapper {
     AlumnoMapper INSTANCE = Mappers.getMapper(AlumnoMapper.class);
 
-    @Mapping(source = "fechanacimiento", target = "fechanacimiento", qualifiedByName = "dateToLong")
     AlumnoDTO alumnoToAlumnoDTO(Alumno alumno);
 
-    @Named("dateToLong")
-    default long map(Date value) {
-        return value != null ? value.getTime() : 0L;
-    }
 }
