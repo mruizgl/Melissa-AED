@@ -4,7 +4,6 @@ import es.iespuerto.instituto.dto.AlumnoDTO;
 import es.iespuerto.instituto.dto.AsignaturaDTO;
 import es.iespuerto.instituto.dto.MatriculaDTO;
 import es.iespuerto.instituto.entities.Alumno;
-import es.iespuerto.instituto.entities.Asignatura;
 import es.iespuerto.instituto.service.AlumnoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

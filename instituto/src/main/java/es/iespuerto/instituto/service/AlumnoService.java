@@ -1,6 +1,7 @@
 package es.iespuerto.instituto.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import es.iespuerto.instituto.controller.AlumnoRESTController;
@@ -52,8 +53,15 @@ public class AlumnoService implements IServiceGeneric<Alumno, String> {
     @Override
     @Transactional
     public boolean delete(String id) {
-        int quantity = repository.deleteAlumnoByDNI(id);
-        return quantity > 0;
+        Optional<Alumno> alumno = repository.findById(id);
+        if (alumno.isPresent()) {
+            repository.deleteAlumnoByDNI(id);
+            return true;
+        } else {
+            System.out.println("No se encuentra alumno por ese id");
+            return false;
+        }
+
     }
 
     @Override

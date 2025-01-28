@@ -5,6 +5,7 @@ import es.iespuerto.instituto.dto.AsignaturaDTO;
 import es.iespuerto.instituto.dto.MatriculaDTO;
 
 import es.iespuerto.instituto.entities.Alumno;
+import es.iespuerto.instituto.entities.Matricula;
 import es.iespuerto.instituto.mapper.classic.AlumnoMapper;
 import es.iespuerto.instituto.service.AlumnoService;
 import org.slf4j.Logger;
