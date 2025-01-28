@@ -48,6 +48,13 @@ public class Asignatura implements Serializable {
     public Asignatura() {
     }
 
+    public Asignatura(int id, List<Matricula> matriculas, String curso, String nombre) {
+        this.id = id;
+        this.matriculas = matriculas;
+        this.curso = curso;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return this.id;
     }

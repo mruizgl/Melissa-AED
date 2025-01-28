@@ -18,7 +18,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true, nullable=false)
-    private long id;
+    private int id;
 
     @Column(name="created_at")
     private Timestamp createdAt;
@@ -44,11 +44,11 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
