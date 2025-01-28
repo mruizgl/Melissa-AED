@@ -12,7 +12,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Servicio de asignaturas
+ *
+ * @author Melissa Ruiz
+ */
 @Service
 public class AsignaturaService implements IServiceGeneric<Asignatura, Integer> {
     private static final Logger logger = LoggerFactory.getLogger(AlumnoRESTController.class);

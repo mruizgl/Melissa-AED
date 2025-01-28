@@ -7,6 +7,11 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Entidad de alumnos del sistema
+ *
+ * @author Melissa Ruiz
+ */
 @Entity
 @Table(name="alumnos")
 @NamedQuery(name="Alumno.findAll", query="SELECT a FROM Alumno a")

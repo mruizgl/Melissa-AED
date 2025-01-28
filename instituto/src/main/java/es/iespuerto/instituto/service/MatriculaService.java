@@ -13,6 +13,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Servicio de matriculas
+ *
+ * @author Melissa Ruiz
+ */
 @Service
 public class MatriculaService implements IServiceGeneric<Matricula, Integer>{
     private static final Logger logger = LoggerFactory.getLogger(AlumnoRESTController.class);

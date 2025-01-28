@@ -7,8 +7,9 @@ import java.util.List;
 
 
 /**
- * The persistent class for the matriculas database table.
+ * Entidad de matriculas del sistema
  *
+ * @author  Melissa Ruiz
  */
 @Entity
 @Table(name="matriculas")

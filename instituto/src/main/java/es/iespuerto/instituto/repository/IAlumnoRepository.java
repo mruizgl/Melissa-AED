@@ -8,7 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-
+/**
+ * Repositorio de alumnos
+ */
 @Repository
 public interface IAlumnoRepository extends JpaRepository<Alumno, String> {
     @Modifying

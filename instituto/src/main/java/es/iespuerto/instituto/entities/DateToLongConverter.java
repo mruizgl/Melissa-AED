@@ -5,6 +5,9 @@ import jakarta.persistence.AttributeConverter;
 
 import java.util.Date;
 
+/**
+ * Convertidor de date a long
+ */
 public class DateToLongConverter implements AttributeConverter<Date, Long> {
     @Override
     public Long convertToDatabaseColumn(Date attribute) {

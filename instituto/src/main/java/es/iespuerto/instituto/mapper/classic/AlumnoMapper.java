@@ -11,6 +11,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper de alumnos
+ *
+ * @author Melissa Ruiz
+ */
 public class AlumnoMapper {
 
     public static AlumnoDTO toDTO(Alumno alumno) {

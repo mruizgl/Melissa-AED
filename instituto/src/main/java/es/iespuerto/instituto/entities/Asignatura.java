@@ -8,8 +8,9 @@ import java.util.List;
 
 
 /**
- * The persistent class for the asignaturas database table.
+ * Entidad de asignatura
  *
+ * @author Melissa Ruiz
  */
 @Entity
 @Table(name="asignaturas")

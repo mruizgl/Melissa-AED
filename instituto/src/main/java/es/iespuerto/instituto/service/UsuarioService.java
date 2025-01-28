@@ -9,11 +9,13 @@ import es.iespuerto.instituto.repository.IUsuarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
     private static final Logger logger = LoggerFactory.getLogger(AlumnoRESTController.class);
 
@@ -57,7 +59,7 @@ public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
     @Override
     public boolean update(Usuario usuario) {
         if (usuario != null ) {
-            Usuario existingUsuario = repository.findById(usuario.getId()).orElse(null);
+            Usuario existingUsuario = repository.findUsuarioByDNI(usuario.getDni());
             if (existingUsuario != null) {
                 existingUsuario.setEmail(usuario.getEmail());
                 existingUsuario.setName(usuario.getName());

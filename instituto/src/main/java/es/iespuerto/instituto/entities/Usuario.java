@@ -6,8 +6,8 @@ import java.sql.Timestamp;
 
 
 /**
- * The persistent class for the users database table.
- *
+ * Entidad de usuarios del sistema
+ * @author Melissa Ruiz
  */
 @Entity
 @Table(name="usuarios")
@@ -16,20 +16,19 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(unique=true, nullable=false)
-    private int id;
+    private String dni;
 
     @Column(name="created_at")
     private Timestamp createdAt;
 
-    @Column(nullable=false, length=255)
+    @Column(nullable=false, length=255, name="correo")
     private String email;
 
     @Column(name="email_verified_at")
     private Timestamp emailVerifiedAt;
 
-    @Column(nullable=false, length=255)
+    @Column(nullable=false, length=255, name="nombre")
     private String name;
 
     @Column(nullable=false, length=255)
@@ -44,12 +43,12 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public int getId() {
-        return this.id;
+    public String getDni() {
+        return dni;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public Timestamp getCreatedAt() {

@@ -15,6 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+/**
+ * Servicio de alumnos
+ *
+ * @author Melissa Ruiz
+ */
 @Service
 public class AlumnoService implements IServiceGeneric<Alumno, String> {
     private static final Logger logger = LoggerFactory.getLogger(AlumnoRESTController.class);

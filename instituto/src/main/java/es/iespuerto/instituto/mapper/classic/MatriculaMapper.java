@@ -9,6 +9,11 @@ import es.iespuerto.instituto.entities.Matricula;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper de matriculas
+ *
+ * @author Melissa Ruiz
+ */
 public class MatriculaMapper {
 
     public static MatriculaDTO toDTO(Matricula matricula) {

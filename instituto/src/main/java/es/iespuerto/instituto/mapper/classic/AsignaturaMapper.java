@@ -6,6 +6,9 @@ import es.iespuerto.instituto.entities.Asignatura;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Mapper de asignaturas
+ */
 public class AsignaturaMapper {
     public static AsignaturaDTO toDTO(Asignatura asignatura) {
         return new AsignaturaDTO(

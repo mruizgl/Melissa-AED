@@ -17,7 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * Controlador de api REST para alumnos
+ *
+ * @author Melissa Ruiz
+ */
 @RestController
 @RequestMapping("/instituto/api/v1/alumnos")
 @CrossOrigin

@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Controlador para api REST instituto de matriculas
+ *
+ * @author Melissa Ruiz
+ */
 @RestController
 @RequestMapping("/instituto/api/v1/matriculas")
 @CrossOrigin
