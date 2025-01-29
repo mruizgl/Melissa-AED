@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import es.iespuerto.instituto.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,9 +18,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
-
-import es.iespuertodelacruz.jc.apiprueba202425.repositories.UsuarioRepository;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -41,7 +39,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtService jwtTokenManager;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private IUsuarioRepository usuarioRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -52,12 +50,12 @@ public class JwtFilter extends OncePerRequestFilter {
         
     	
     	//rutas permitidas sin estar autenticado
-    	String rutasPermitidas[]= { "/swagger-ui.html", 
-    	        					"/swagger-ui/", "/v2/", 
-    	        					"configuration/",	"/swagger", 
-    	        					"/webjars/", "/api/login", 
+    	String rutasPermitidas[]= { "/swagger-ui.html",
+    	        					"/swagger-ui/", "/v2/",
+    	        					"configuration/",	"/swagger",
+    	        					"/webjars/", "/api/login",
     	        					"/api/register", "/v3/",
-    	        					"/websocket", "/index.html", "/api/v1"};
+    	        					"/websocket", "/index.html", "/api/v1", "/api/v1/matriculas"};
     	
     	//String rutasPermitidas[] = {};
     			
@@ -97,7 +95,7 @@ public class JwtFilter extends OncePerRequestFilter {
 					@Override
 					public Collection<? extends GrantedAuthority> getAuthorities() {
 					    List<GrantedAuthority> authorities = new ArrayList<>();
-					
+
 					    authorities.add(new SimpleGrantedAuthority(rol));
 					    return authorities;
 					}

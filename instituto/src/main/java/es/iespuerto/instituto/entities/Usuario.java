@@ -20,7 +20,7 @@ public class Usuario implements Serializable {
     private String dni;
 
     @Column(name="created_at")
-    private Timestamp createdAt;
+    private Long fechaCreacion;
 
     @Column(nullable=false, length=255, name="correo")
     private String email;
@@ -29,10 +29,13 @@ public class Usuario implements Serializable {
     private Timestamp emailVerifiedAt;
 
     @Column(nullable=false, length=255, name="nombre")
-    private String name;
+    private String nombre;
 
     @Column(nullable=false, length=255)
     private String password;
+
+    @Column(nullable=false, length=45)
+    private String rol;
 
     @Column(name="remember_token", length=100)
     private String rememberToken;
@@ -40,7 +43,26 @@ public class Usuario implements Serializable {
     @Column(name="updated_at")
     private Timestamp updatedAt;
 
+    @Column(name="verificado")
+    private int verificado;
+
     public Usuario() {
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public int getVerificado() {
+        return verificado;
+    }
+
+    public void setVerificado(int verificado) {
+        this.verificado = verificado;
     }
 
     public String getDni() {
@@ -51,12 +73,12 @@ public class Usuario implements Serializable {
         this.dni = dni;
     }
 
-    public Timestamp getCreatedAt() {
-        return this.createdAt;
+    public Long getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setFechaCreacion(Long fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
     public String getEmail() {
@@ -75,12 +97,12 @@ public class Usuario implements Serializable {
         this.emailVerifiedAt = emailVerifiedAt;
     }
 
-    public String getName() {
-        return this.name;
+    public String getNombre() {
+        return this.nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getPassword() {

@@ -2,12 +2,9 @@ package es.iespuerto.instituto.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import es.iespuerto.instituto.controller.AlumnoRESTController;
-import es.iespuerto.instituto.dto.AlumnoDTO;
 import es.iespuerto.instituto.entities.Alumno;
-import es.iespuerto.instituto.mapper.mapstruc.AlumnoMapper;
 import es.iespuerto.instituto.repository.IAlumnoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

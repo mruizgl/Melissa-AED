@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c02b97e8-f5b9-4756-a7db-ec92ab11bf14" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/config/DatabaseConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/controller/PartidaRESTController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/dto/ApuestaDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/model/Estado.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/model/TresEnRaya.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/repository/TresEnRayaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/es/mr/iespuerto/tresenraya/service/TresEnRayaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +30,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2sG8MXIecFRXEuGoUiKZbUNQeT5" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -58,7 +45,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/melru/Documents/GitHub/Melissa-AED/tresenraya/src/main/java/es/mr/iespuerto/tresenraya"
+    "last_opened_file_path": "C:/Users/melru/Documents/GitHub/Melissa-AED/instituto"
   }
 }]]></component>
   <component name="RecentsManager">

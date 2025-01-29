@@ -9,6 +9,10 @@ import java.util.Date;
  * Convertidor de date a long
  */
 public class DateToLongConverter implements AttributeConverter<Date, Long> {
+    public static Date longToDate(Long aLong) {
+        return (aLong == null) ? null : new Date(aLong);
+    }
+
     @Override
     public Long convertToDatabaseColumn(Date attribute) {
         return (attribute == null) ? null : attribute.getTime();

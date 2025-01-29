@@ -1,10 +1,7 @@
 package es.iespuerto.instituto.service;
 
 import es.iespuerto.instituto.controller.AlumnoRESTController;
-import es.iespuerto.instituto.entities.Asignatura;
-import es.iespuerto.instituto.entities.Matricula;
 import es.iespuerto.instituto.entities.Usuario;
-import es.iespuerto.instituto.repository.IMatriculaRepository;
 import es.iespuerto.instituto.repository.IUsuarioRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
@@ -62,7 +58,7 @@ public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
             Usuario existingUsuario = repository.findUsuarioByDNI(usuario.getDni());
             if (existingUsuario != null) {
                 existingUsuario.setEmail(usuario.getEmail());
-                existingUsuario.setName(usuario.getName());
+                existingUsuario.setNombre(usuario.getNombre());
                 existingUsuario.setPassword(usuario.getPassword());
 
                 repository.save(existingUsuario);

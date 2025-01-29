@@ -1,10 +1,12 @@
 package es.iespuerto.instituto.dto;
 
-import java.security.Timestamp;
+import java.util.Date;
 
 public record UsuarioDTO(
-        String email,
-        String name,
-        String password
-
+        int id,
+        String correo,
+        Date fechaCreacion,
+        String nombre,
+        String password,
+        String rol
 ) {}

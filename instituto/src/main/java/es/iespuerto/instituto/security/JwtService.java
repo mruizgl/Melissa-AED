@@ -15,13 +15,10 @@ import com.auth0.jwt.interfaces.Claim;
 
 @Service
 public class JwtService {
-	
     //@Value("${jwt.secret}")
     private String secret="ungransecreto";
-
     //@Value("${jwt.expiration}")
     private long expiration=9876543210L;
-
     public String generateToken(String username, String rol) {
         return JWT.create()
                 .withSubject(username)
@@ -30,17 +27,15 @@ public class JwtService {
                 .sign(Algorithm.HMAC256(secret));
     }
 
-    
-    public  Map<String, String> validateAndGetClaims(String token) {
-         Map<String, Claim> claims = JWT.require(Algorithm.HMAC256(secret))
+    public Map<String, String> validateAndGetClaims(String token) {
+        Map<String, Claim> claims = JWT.require(Algorithm.HMAC256(secret))
                 .build()
                 .verify(token)
                 .getClaims();
-         
-         Map<String,String> infoToken = new HashMap<String,String>();
-         infoToken.put("username", claims.get("sub").asString());
-         infoToken.put("role", claims.get("role").asString());
 
-         return infoToken;
-    }    
+        Map<String,String> infoToken = new HashMap<String,String>();
+        infoToken.put("username", claims.get("sub").asString());
+        infoToken.put("role", claims.get("role").asString());
+        return infoToken;
+    }
 }

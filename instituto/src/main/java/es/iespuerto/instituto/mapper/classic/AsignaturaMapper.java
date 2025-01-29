@@ -24,4 +24,18 @@ public class AsignaturaMapper {
                 .collect(Collectors.toList());
     }
 
+    public static Asignatura toEntity(AsignaturaDTO asignaturaDTO) {
+        Asignatura asignatura = new Asignatura();
+        asignatura.setId(asignaturaDTO.id());
+        asignatura.setCurso(asignaturaDTO.curso());
+        asignatura.setNombre(asignaturaDTO.nombre());
+        return asignatura;
+    }
+
+    public static List<Asignatura> toEntityList(List<AsignaturaDTO> asignaturaDTOList) {
+        return asignaturaDTOList.stream()
+                .map(AsignaturaMapper::toEntity)
+                .collect(Collectors.toList());
+    }
+
 }

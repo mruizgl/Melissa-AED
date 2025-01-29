@@ -7,11 +7,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * Repositorio de usuarios
  */
 @Repository
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
+    @Query("SELECT u FROM Usuario u WHERE u.nombre = :nombre")
+    Optional<Usuario> findByNombre(@Param("nombre") String nombre);
+
     @Modifying
     @Query(
             value="DELETE FROM usuarios WHERE dni=:dni",
