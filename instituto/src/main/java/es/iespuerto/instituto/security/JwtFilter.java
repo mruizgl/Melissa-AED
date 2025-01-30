@@ -51,11 +51,12 @@ public class JwtFilter extends OncePerRequestFilter {
     	
     	//rutas permitidas sin estar autenticado
     	String rutasPermitidas[]= { "/swagger-ui.html",
-    	        					"/swagger-ui/", "/v2/",
-    	        					"configuration/",	"/swagger",
-    	        					"/webjars/", "/api/login",
-    	        					"/api/register", "/v3/",
-    	        					"/websocket", "/index.html", "/api/v1", "/api/v1/matriculas"};
+				"/swagger-ui/", "/v2/",
+				"/configuration/", "/swagger/",
+				"/webjars/", "/api/login",
+				"/api/register", "/v3/",
+				"/websocket/", "/index.html",
+				"/register", "/login", "/instituto/api/v1/", "/register"};
     	
     	//String rutasPermitidas[] = {};
     			

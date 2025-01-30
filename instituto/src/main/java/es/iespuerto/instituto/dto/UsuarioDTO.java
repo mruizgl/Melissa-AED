@@ -3,7 +3,7 @@ package es.iespuerto.instituto.dto;
 import java.util.Date;
 
 public record UsuarioDTO(
-        int id,
+        String dni,
         String correo,
         Date fechaCreacion,
         String nombre,

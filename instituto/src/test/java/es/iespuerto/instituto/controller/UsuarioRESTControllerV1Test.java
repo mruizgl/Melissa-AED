@@ -2,6 +2,7 @@ package es.iespuerto.instituto.controller;
 
 import es.iespuerto.instituto.dto.UsuarioDTO;
 import es.iespuerto.instituto.entities.Usuario;
+import es.iespuerto.instituto.mapper.classic.UsuarioMapperClassic;
 import es.iespuerto.instituto.service.UsuarioService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,15 +29,9 @@ public class UsuarioRESTControllerV1Test {
 
     @BeforeEach
     void setUp() {
-        usuarioDTO = new UsuarioDTO(1, "email@example.com", new java.util.Date(), "pepito", "pass", "token");
+        usuarioDTO = new UsuarioDTO("1", "email@example.com", new java.util.Date(), "pepito", "pass", "ROLE_USER");
 
-        usuario = new Usuario();
-        usuario.setEmail("email@example.com");
-        usuario.setFechaCreacion(usuarioDTO.fechaCreacion().getTime());
-        usuario.setNombre("pepito");
-        usuario.setPassword("pass");
-        usuario.setRol("ROLE_USER");
-        usuario.setRememberToken("token");
+        usuario = UsuarioMapperClassic.toEntity(usuarioDTO);
     }
 
     @Test
@@ -49,6 +44,5 @@ public class UsuarioRESTControllerV1Test {
         assertEquals("pepito", createdUsuario.getNombre());
         assertEquals("pass", createdUsuario.getPassword());
         assertEquals("ROLE_USER", createdUsuario.getRol());
-        assertEquals("token", createdUsuario.getRememberToken());
     }
 }

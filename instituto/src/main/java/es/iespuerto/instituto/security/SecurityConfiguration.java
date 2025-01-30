@@ -38,12 +38,10 @@ public class SecurityConfiguration {
 								"/webjars/**", "/api/login",
 								"/api/register", "/v3/**",
 								"/websocket*/**", "/index.html",
-								"/register", "/login"
+								"/register", "/login", "/instituto/api/v1/**"
 						).permitAll()
-						.requestMatchers(HttpMethod.POST, "/login").permitAll()
-						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-						.requestMatchers("/api/v1/**", "/instituto/**").authenticated()
-						//.anyRequest().authenticated()
+						.requestMatchers("/instituto/api/**").hasRole("ADMIN")
+						.anyRequest().authenticated()
 				)
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
