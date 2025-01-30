@@ -57,7 +57,8 @@ public class JwtFilter extends OncePerRequestFilter {
 				"/webjars/", "/api/login",
 				"/api/register", "/v3/",
 				"/websocket/", "/index.html", "/auth/",
-				"/auth/register/", "/auth/login/", "/auth/login", "/auth/register","/instituto/api/v1/"};
+				"/auth/register/", "/auth/login/", "/auth/login", "/auth/register","/instituto/api/v1/",
+				"/auth/confirmation"};
     	
     	//String rutasPermitidas[] = {};
     			

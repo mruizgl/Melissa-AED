@@ -96,12 +96,17 @@ public class AuthController {
 
 
 
-    /**
-     *
-     * @return
-
     @GetMapping("/confirmation")
-    public String confirmation() {
-
-    }   */
+    public ResponseEntity<String> confirmation(@RequestParam("correo") String correo, @RequestParam("token") String token) {
+        try {
+            boolean isConfirmed = authService.confirmEmail(correo, token);
+            if (isConfirmed) {
+                return ResponseEntity.ok("Email confirmado con éxito");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Token inválido o expirado");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en la confirmación: " + e.getMessage());
+        }
+    }
 }

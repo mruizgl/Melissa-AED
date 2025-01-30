@@ -62,5 +62,15 @@ public class AuthService {
 		}
 		return generateToken;
 	}
+
+	public boolean confirmEmail(String correo, String token) {
+		Usuario usuario = usuarioRepository.findByCorreo(correo);
+		if (usuario != null && usuario.getRememberToken().equals(token)) {
+			usuario.setVerificado(1);
+			usuarioRepository.save(usuario);
+			return true;
+		}
+		return false;
+	}
 }
 
