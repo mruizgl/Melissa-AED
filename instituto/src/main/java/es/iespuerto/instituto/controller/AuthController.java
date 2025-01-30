@@ -1,14 +1,16 @@
 package es.iespuerto.instituto.controller;
 
+import es.iespuerto.instituto.entities.Usuario;
 import es.iespuerto.instituto.repository.IUsuarioRepository;
 import es.iespuerto.instituto.security.AuthService;
 import es.iespuerto.instituto.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/auth/")
 @CrossOrigin
 public class AuthController {
     @Autowired
@@ -38,16 +40,33 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UsuarioLogin u) {
-        String token = authService.authenticate(u.getNombre(), u.getPassword());
-        if (token == null) {
-            throw new RuntimeException("Credenciales inválidas");
+    public ResponseEntity<?> login(@RequestBody UsuarioLogin u) {
+        try {
+            String token = authService.authenticate(u.getNombre(), u.getPassword());
+            if (token == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+            }
+            return ResponseEntity.ok(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en autenticación: " + e.getMessage());
         }
-        return ResponseEntity.ok(token);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody UsuarioRegister u) {
+        try {
+            Usuario registered = authService.register(u.getDni(), u.getNombre(), u.getPassword(), u.getCorreo());
+            String confirmUri = "http://localhost:8080/auth/confirmation?correo=" + registered.getEmail() + "&token=" + registered.getRememberToken();
+            mailService.send(new String[]{u.getCorreo()}, "usuario creado", confirmUri);
+            return ResponseEntity.ok("Correo de verificación enviado");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error en registro: " + e.getMessage());
+        }
     }
 
     static class UsuarioRegister {
         public UsuarioRegister() {}
+        public String dni;
         public String nombre;
         public String password;
         public String correo;
@@ -69,13 +88,20 @@ public class AuthController {
         public void setCorreo(String correo) {
             this.correo = correo;
         }
+
+        public String getDni() {
+            return dni;
+        }
     }
 
-    @PostMapping("/register")
-    public String register(@RequestBody UsuarioRegister u) {
-        String token = authService.register(u.getNombre(), u.getPassword(), u.getCorreo());
-        String[] senders = {u.getCorreo()};
-        mailService.send(senders, "usuario creado", token);
-        return token;
-    }
+
+
+    /**
+     *
+     * @return
+
+    @GetMapping("/confirmation")
+    public String confirmation() {
+
+    }   */
 }

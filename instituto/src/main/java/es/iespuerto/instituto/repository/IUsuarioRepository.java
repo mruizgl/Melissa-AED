@@ -29,5 +29,5 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
             value="SELECT FROM usuarios WHERE dni=:dni",
             nativeQuery=true
     )
-    Usuario findUsuarioByDNI(@Param("dni") String dni);
+    int findUsuarioByDNI(@Param("dni") String dni);
 }

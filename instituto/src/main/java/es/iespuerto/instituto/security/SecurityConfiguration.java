@@ -31,20 +31,23 @@ public class SecurityConfiguration {
 				.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+								.requestMatchers("/auth/login", "/auth/register", "/auth/confirmation").permitAll()
 						.requestMatchers(
 								"/swagger-ui.html",
 								"/swagger-ui/**", "/v2/**",
 								"/configuration/**", "/swagger*/**",
-								"/webjars/**", "/api/login",
+								"/webjars/**",
 								"/api/register", "/v3/**",
 								"/websocket*/**", "/index.html",
-								"/register", "/login", "/instituto/api/v1/**"
+								"/auth/**", "/instituto/api/v1/**"
 						).permitAll()
 						.requestMatchers("/instituto/api/**").hasRole("ADMIN")
-						.anyRequest().authenticated()
+						//.anyRequest().authenticated()
 				)
 				.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+				.anonymous(anonymous -> anonymous.disable());
+
 
 		return http.build();
 	}

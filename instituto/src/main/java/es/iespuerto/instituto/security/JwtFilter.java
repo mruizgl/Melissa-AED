@@ -47,6 +47,7 @@ public class JwtFilter extends OncePerRequestFilter {
     	
     	
     	String path = request.getRequestURI();
+
         
     	
     	//rutas permitidas sin estar autenticado
@@ -55,8 +56,8 @@ public class JwtFilter extends OncePerRequestFilter {
 				"/configuration/", "/swagger/",
 				"/webjars/", "/api/login",
 				"/api/register", "/v3/",
-				"/websocket/", "/index.html",
-				"/register", "/login", "/instituto/api/v1/", "/register"};
+				"/websocket/", "/index.html", "/auth/",
+				"/auth/register/", "/auth/login/", "/auth/login", "/auth/register","/instituto/api/v1/"};
     	
     	//String rutasPermitidas[] = {};
     			

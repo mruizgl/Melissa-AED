@@ -17,9 +17,10 @@ public class Usuario implements Serializable {
 
     @Id
     @Column(unique=true, nullable=false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String dni;
 
-    @Column(name="created_at")
+    @Column(name="fecha_creacion")
     private Long fechaCreacion;
 
     @Column(nullable=false, length=255, name="correo")

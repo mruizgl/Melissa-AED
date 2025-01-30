@@ -55,13 +55,13 @@ public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
     @Override
     public boolean update(Usuario usuario) {
         if (usuario != null ) {
-            Usuario existingUsuario = repository.findUsuarioByDNI(usuario.getDni());
-            if (existingUsuario != null) {
-                existingUsuario.setEmail(usuario.getEmail());
-                existingUsuario.setNombre(usuario.getNombre());
-                existingUsuario.setPassword(usuario.getPassword());
+            int existingUsuario = repository.findUsuarioByDNI(usuario.getDni());
+            if (existingUsuario > 0) {
+                usuario.setEmail(usuario.getEmail());
+                usuario.setNombre(usuario.getNombre());
+                usuario.setPassword(usuario.getPassword());
 
-                repository.save(existingUsuario);
+                repository.save(usuario);
                 return true;
             }
         }

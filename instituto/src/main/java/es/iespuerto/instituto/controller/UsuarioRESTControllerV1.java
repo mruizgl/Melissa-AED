@@ -3,6 +3,7 @@ package es.iespuerto.instituto.controller;
 import es.iespuerto.instituto.dto.UsuarioDTO;
 import es.iespuerto.instituto.entities.Usuario;
 import es.iespuerto.instituto.mapper.classic.UsuarioMapper;
+import es.iespuerto.instituto.mapper.classic.UsuarioMapperClassic;
 import es.iespuerto.instituto.service.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class UsuarioRESTControllerV1 {
 
         List<Usuario> findAll = usuarioService.findAll();
 
-        List<UsuarioDTO> allDTO = UsuarioMapper.INSTANCE.toDTOList(findAll);
+        List<UsuarioDTO> allDTO = UsuarioMapperClassic.toDTOList(findAll);
         logger.info("Se encontraron {} usuarios.", allDTO.size());
         return ResponseEntity.ok(allDTO);
     }
