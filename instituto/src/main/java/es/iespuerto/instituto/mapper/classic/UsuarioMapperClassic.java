@@ -1,11 +1,7 @@
 package es.iespuerto.instituto.mapper.classic;
 
-import es.iespuerto.instituto.dto.AsignaturaDTO;
-import es.iespuerto.instituto.dto.MatriculaDTO;
 import es.iespuerto.instituto.dto.UsuarioDTO;
-import es.iespuerto.instituto.entities.Asignatura;
 import es.iespuerto.instituto.entities.DateToLongConverter;
-import es.iespuerto.instituto.entities.Matricula;
 import es.iespuerto.instituto.entities.Usuario;
 
 import java.util.List;
@@ -17,7 +13,7 @@ public class UsuarioMapperClassic {
 
         return new UsuarioDTO(
                 usuario.getDni(),
-                usuario.getEmail(),
+                usuario.getCorreo(),
                 DateToLongConverter.longToDate(usuario.getFechaCreacion()),
                 usuario.getNombre(),
                 usuario.getPassword(),

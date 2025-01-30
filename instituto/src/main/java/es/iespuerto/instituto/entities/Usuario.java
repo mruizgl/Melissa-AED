@@ -16,15 +16,13 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(unique=true, nullable=false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String dni;
 
     @Column(name="fecha_creacion")
     private Long fechaCreacion;
 
     @Column(nullable=false, length=255, name="correo")
-    private String email;
+    private String correo;
 
     @Column(name="email_verified_at")
     private Timestamp emailVerifiedAt;
@@ -47,16 +45,25 @@ public class Usuario implements Serializable {
     @Column(name="verificado")
     private int verificado;
 
+
+
     public Usuario() {
     }
 
-    public Usuario(String dni, Long fechaCreacion, String email, String nombre, String password, String rol) {
+    public Usuario(String dni, Long fechaCreacion, String correo, String nombre, String password, String rol) {
         this.dni = dni;
         this.fechaCreacion = fechaCreacion;
-        this.email = email;
+        this.correo = correo;
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
+    }
+
+    public Usuario(String dni, String correo, String nombre, String password) {
+        this.dni = dni;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.password = password;
     }
 
     public String getRol() {
@@ -91,12 +98,12 @@ public class Usuario implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getCorreo() {
+        return this.correo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCorreo(String correo) {
+        this.correo = correo;
     }
 
     public Timestamp getEmailVerifiedAt() {

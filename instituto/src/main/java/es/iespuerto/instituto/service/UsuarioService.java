@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
+public class UsuarioService implements IServiceGeneric<Usuario, String>{
     private static final Logger logger = LoggerFactory.getLogger(AlumnoRESTController.class);
 
     @Autowired
@@ -28,7 +28,7 @@ public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
     }
 
     @Override
-    public Usuario findById(Integer id) {
+    public Usuario findById(String id) {
         Usuario usuario = repository.findById(id).orElse(null);
         if (usuario == null) {
             logger.info("Usuario no encontrado con id: " + id);
@@ -43,7 +43,7 @@ public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
     }
 
     @Override
-    public boolean delete(Integer id) {
+    public boolean delete(String id) {
         Optional<Usuario> usuario = repository.findById(id);
         if (usuario.isPresent()) {
             repository.deleteById(id);
@@ -54,14 +54,14 @@ public class UsuarioService implements IServiceGeneric<Usuario, Integer>{
 
     @Override
     public boolean update(Usuario usuario) {
-        if (usuario != null ) {
-            int existingUsuario = repository.findUsuarioByDNI(usuario.getDni());
-            if (existingUsuario > 0) {
-                usuario.setEmail(usuario.getEmail());
-                usuario.setNombre(usuario.getNombre());
-                usuario.setPassword(usuario.getPassword());
+        if (usuario != null) {
+            Usuario existingUsuario = repository.findUsuarioByDNI(usuario.getDni());
+            if (existingUsuario != null) {
+                existingUsuario.setCorreo(usuario.getCorreo());
+                existingUsuario.setNombre(usuario.getNombre());
+                existingUsuario.setPassword(usuario.getPassword());
 
-                repository.save(usuario);
+                repository.save(existingUsuario);
                 return true;
             }
         }

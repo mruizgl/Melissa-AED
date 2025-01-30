@@ -56,7 +56,7 @@ public class AuthController {
     public ResponseEntity<?> register(@RequestBody UsuarioRegister u) {
         try {
             Usuario registered = authService.register(u.getDni(), u.getNombre(), u.getPassword(), u.getCorreo());
-            String confirmUri = "http://localhost:8080/auth/confirmation?correo=" + registered.getEmail() + "&token=" + registered.getRememberToken();
+            String confirmUri = "http://localhost:8080/auth/confirmation?correo=" + registered.getCorreo() + "&token=" + registered.getRememberToken();
             mailService.send(new String[]{u.getCorreo()}, "usuario creado", confirmUri);
             return ResponseEntity.ok("Correo de verificación enviado");
         } catch (Exception e) {

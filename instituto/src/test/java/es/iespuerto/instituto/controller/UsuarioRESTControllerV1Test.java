@@ -40,7 +40,7 @@ public class UsuarioRESTControllerV1Test {
 
         Usuario createdUsuario = usuarioRESTControllerV1.crearUsuario(usuarioDTO);
 
-        assertEquals("email@example.com", createdUsuario.getEmail());
+        assertEquals("email@example.com", createdUsuario.getCorreo());
         assertEquals("pepito", createdUsuario.getNombre());
         assertEquals("pass", createdUsuario.getPassword());
         assertEquals("ROLE_USER", createdUsuario.getRol());

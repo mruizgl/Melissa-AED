@@ -13,7 +13,7 @@ import java.util.Optional;
  * Repositorio de usuarios
  */
 @Repository
-public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
+public interface IUsuarioRepository extends JpaRepository<Usuario, String> {
     @Query("SELECT u FROM Usuario u WHERE u.nombre = :nombre")
     Optional<Usuario> findByNombre(@Param("nombre") String nombre);
 
@@ -24,10 +24,9 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     )
     int deleteUsuarioByDNI(@Param("dni") String dni);
 
-    @Modifying
     @Query(
-            value="SELECT FROM usuarios WHERE dni=:dni",
+            value="SELECT * FROM usuarios WHERE dni=:dni",
             nativeQuery=true
     )
-    int findUsuarioByDNI(@Param("dni") String dni);
+    Usuario findUsuarioByDNI(@Param("dni") String dni);
 }

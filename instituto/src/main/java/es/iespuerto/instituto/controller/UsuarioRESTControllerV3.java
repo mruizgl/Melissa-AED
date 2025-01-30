@@ -37,7 +37,7 @@ public class UsuarioRESTControllerV3 {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarUsuario(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminarUsuario(@PathVariable String id) {
         usuarioService.delete(id);
         return ResponseEntity.noContent().build();
     }

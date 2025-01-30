@@ -2,7 +2,6 @@ package es.iespuerto.instituto.controller;
 
 import es.iespuerto.instituto.dto.UsuarioDTO;
 import es.iespuerto.instituto.entities.Usuario;
-import es.iespuerto.instituto.mapper.classic.UsuarioMapper;
 import es.iespuerto.instituto.mapper.classic.UsuarioMapperClassic;
 import es.iespuerto.instituto.service.UsuarioService;
 import org.slf4j.Logger;
@@ -47,7 +46,7 @@ public class UsuarioRESTControllerV1 {
     @PostMapping
     public Usuario crearUsuario(@RequestBody UsuarioDTO dto) {
         Usuario u = new Usuario();
-        u.setEmail(dto.correo());
+        u.setCorreo(dto.correo());
         u.setFechaCreacion(dto.fechaCreacion().getTime());
         u.setNombre(dto.nombre());
         u.setPassword(dto.password());
@@ -59,7 +58,7 @@ public class UsuarioRESTControllerV1 {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarUsuario(@PathVariable Integer id) {
+    public ResponseEntity<?> eliminarUsuario(@PathVariable String id) {
         usuarioService.delete(id);
         logger.info("Usuario eliminado con dni: {}", id);
         return ResponseEntity.noContent().build();
