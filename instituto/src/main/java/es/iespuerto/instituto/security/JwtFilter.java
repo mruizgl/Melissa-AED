@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import es.iespuerto.instituto.repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,6 +18,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 
+import es.iespuerto.instituto.repository.IUsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -52,6 +52,7 @@ public class JwtFilter extends OncePerRequestFilter {
     	
     	//rutas permitidas sin estar autenticado
     	String rutasPermitidas[]= { "/swagger-ui.html",
+		"/swagger-ui.html/", "/swagger-ui",
 				"/swagger-ui/", "/v2/",
 				"/configuration/", "/swagger/",
 				"/webjars/", "/api/login",
