@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import ListaMatriculasScreen from '../screens/MatriculasScreen';
 
 const Screen1 = () => (
   <SafeAreaView>
@@ -29,7 +30,7 @@ const TresTabsNavigation = () => {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Tab1" component={Screen1} />
-        <Tab.Screen name="Tab2" component={Screen2} />
+        <Tab.Screen name="Matrículas" component={ListaMatriculasScreen} />
         <Tab.Screen name="Tab3" component={Screen3} />
       </Tab.Navigator>
     </NavigationContainer>
