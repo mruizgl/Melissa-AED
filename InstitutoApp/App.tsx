@@ -1,17 +1,25 @@
-import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AppProvider, AppContext } from './src/context/AppContext';
 import TresTabsNavigation from './src/navigation/TresTabsNavigation';
-import ListaMatriculasScreen from './src/screens/MatriculasScreen';
-
+import LoginScreen from './src/screens/LoginScreen';
 
 const App = () => {
+  const { isAuthenticated } = useContext(AppContext)!;
+
   return (
-    <View style={{flex: 1}}>
-      <TresTabsNavigation />
+    <View style={{ flex: 1 }}>
+      <NavigationContainer>
+        {isAuthenticated ? <TresTabsNavigation /> : <LoginScreen />}
+      </NavigationContainer>
     </View>
   );
 };
 
-export default App;
+// Aquí envolvemos App con AppProvider para que el contexto esté disponible globalmente
+export default () => (
+  <AppProvider>
+    <App />
+  </AppProvider>
+);
