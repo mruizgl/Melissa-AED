@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ListaMatriculasScreen from '../screens/MatriculasScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Screen1 = () => (
   <SafeAreaView>
@@ -39,7 +40,7 @@ const TresTabsNavigation = () => {
           },
         })}
       >
-        <Tab.Screen name="Perfil" component={Screen1} />
+        <Tab.Screen name="Perfil" component={LoginScreen} />
         <Tab.Screen name="Matrículas" component={ListaMatriculasScreen} />
         <Tab.Screen name="Buscar" component={Screen3} />
       </Tab.Navigator>
