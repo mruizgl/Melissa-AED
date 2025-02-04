@@ -2,17 +2,12 @@ import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 import ListaMatriculasScreen from '../screens/MatriculasScreen';
 
 const Screen1 = () => (
   <SafeAreaView>
     <Text>Pestaña 1</Text>
-  </SafeAreaView>
-);
-
-const Screen2 = () => (
-  <SafeAreaView>
-    <Text>Pestaña 2</Text>
   </SafeAreaView>
 );
 
@@ -22,16 +17,31 @@ const Screen3 = () => (
   </SafeAreaView>
 );
 
-
 const Tab = createBottomTabNavigator();
 
 const TresTabsNavigation = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Tab1" component={Screen1} />
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ color, size }) => {
+            let iconName = '';
+
+            if (route.name === 'Perfil') {
+              iconName = 'person'; 
+            } else if (route.name === 'Matrículas') {
+              iconName = 'list'; 
+            } else if (route.name === 'Buscar') {
+              iconName = 'search'; 
+            }
+
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+        })}
+      >
+        <Tab.Screen name="Perfil" component={Screen1} />
         <Tab.Screen name="Matrículas" component={ListaMatriculasScreen} />
-        <Tab.Screen name="Tab3" component={Screen3} />
+        <Tab.Screen name="Buscar" component={Screen3} />
       </Tab.Navigator>
     </NavigationContainer>
   );
