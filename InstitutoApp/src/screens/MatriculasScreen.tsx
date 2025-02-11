@@ -21,7 +21,7 @@ const ListaMatriculasScreen = () => {
   useEffect(() => {
     const fetchMatriculas = async () => {
       try {
-        const response = await fetch('http://192.168.0.28:8082/instituto/api/v1/matriculas');
+        const response = await fetch('http://10.108.8.0:8080/instituto/api/v1/matriculas');
         if (!response.ok) {
           throw new Error('Error al obtener las matrículas');
         }
