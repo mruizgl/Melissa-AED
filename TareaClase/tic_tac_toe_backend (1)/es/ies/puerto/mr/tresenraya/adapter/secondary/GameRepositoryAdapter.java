@@ -1,0 +1,1 @@
+// GameRepositoryAdapter.java - Implementación pendiente

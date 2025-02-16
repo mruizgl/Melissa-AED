@@ -1,0 +1,1 @@
+// GameUseCase.java - Implementación pendiente
