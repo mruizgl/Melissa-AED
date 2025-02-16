@@ -21,13 +21,15 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/v3/api-docs.yaml",
-                                "/swagger-ui.html"
-                        ).permitAll() // Permitir acceso público a Swagger
-                        .anyRequest().authenticated() // Proteger el resto de las rutas
+                                "/swagger-ui.html",
+                                "/users/**",
+                                "/login"
+                        ).permitAll()
+                        .anyRequest().authenticated()
                 )
-                .csrf(csrf -> csrf.disable()) // Deshabilitar CSRF si es necesario para desarrollo
-                .formLogin(form -> form.disable()) // Deshabilitar el formulario de login por defecto
-                .httpBasic(httpBasic -> httpBasic.disable()); // Deshabilitar autenticación básica
+                .csrf(csrf -> csrf.disable())
+                .formLogin(form -> form.disable())
+                .httpBasic(httpBasic -> httpBasic.disable());
 
         return http.build();
     }
