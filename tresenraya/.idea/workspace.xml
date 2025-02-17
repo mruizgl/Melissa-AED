@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4d2164c-9483-4d84-ac72-db78c4a782cb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/model/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/primary/IGameService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/secondary/IGameRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/service/GameDomainService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/GameRESTController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameEntityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameJpaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/mapper/GameMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/UserRESTController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/UserRESTController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/secondary/IUserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/secondary/IUserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/UserEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/UserEntityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/database.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/database.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1739558420628</updated>
       <workItem from="1739558421830" duration="6850000" />
-      <workItem from="1739736694807" duration="9416000" />
+      <workItem from="1739736694807" duration="13389000" />
     </task>
     <servers />
   </component>
