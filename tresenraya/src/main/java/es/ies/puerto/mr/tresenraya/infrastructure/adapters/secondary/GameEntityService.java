@@ -28,7 +28,14 @@ public class GameEntityService implements IGameRepository {
     }
 
     @Override
+    public Optional<Game> findFirstByOrderByIdDesc() {
+        return gameJpaRepository.findFirstByOrderByIdDesc().map(GameMapper::toDomain);
+    }
+
+    @Override
     public Optional<Game> findById(Long gameId) {
         return gameJpaRepository.findById(gameId).map(GameMapper::toDomain);
     }
+
+
 }

@@ -11,4 +11,5 @@ public interface IGameService {
     Optional<Game> makeMove(Long gameId, int row, int col, String symbol);
     Optional<Game> getGameStatus(Long gameId);
     Optional<Game> spectateGame(Long gameId);
+    Long getLastGameId();
 }

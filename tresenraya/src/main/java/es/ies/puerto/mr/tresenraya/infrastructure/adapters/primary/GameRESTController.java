@@ -62,4 +62,10 @@ public class GameRESTController {
         Optional<Game> game = gameService.spectateGame(id);
         return game.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/last-id")
+    public ResponseEntity<Long> getLastGameId() {
+        Long lastId = gameService.getLastGameId();
+        return ResponseEntity.ok(lastId);
+    }
 }

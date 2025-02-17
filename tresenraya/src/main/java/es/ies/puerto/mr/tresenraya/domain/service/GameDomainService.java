@@ -20,6 +20,13 @@ public class GameDomainService implements IGameService {
     }
 
     @Override
+    public Long getLastGameId() {
+        return gameRepository.findFirstByOrderByIdDesc()
+                .map(Game::getId)
+                .orElse(0L);
+    }
+
+    @Override
     public Game createGame(User player1) {
         Game game = new Game(null, player1, null, "IN_PROGRESS", new String[3][3]);
         return gameRepository.save(game);

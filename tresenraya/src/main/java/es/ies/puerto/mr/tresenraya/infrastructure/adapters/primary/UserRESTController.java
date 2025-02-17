@@ -33,15 +33,15 @@ public class UserRESTController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestBody UserDTO userDTO) {
-        logger.info("Intentando iniciar sesión con email: {}", userDTO.getEmail());
-        Optional<User> user = userService.authenticateUser(userDTO.getEmail(), userDTO.getPassword());
+    public ResponseEntity<User> loginUser(@RequestBody UserDTO userDTO) { // 🔹 Cambiamos @RequestParam a @RequestBody
+        logger.info("Intentando iniciar sesión con username: {}", userDTO.getUsername());
+        Optional<User> user = userService.authenticateUser(userDTO.getUsername(), userDTO.getPassword()); // 🔹 Se usa username
 
         if (user.isPresent()) {
-            logger.info("Inicio de sesión exitoso para: {}", userDTO.getEmail());
+            logger.info("Inicio de sesión exitoso para: {}", userDTO.getUsername());
             return ResponseEntity.ok(user.get());
         } else {
-            logger.warn("Fallo en inicio de sesión para: {}", userDTO.getEmail());
+            logger.warn("Fallo en inicio de sesión para: {}", userDTO.getUsername());
             return ResponseEntity.status(401).build();
         }
     }

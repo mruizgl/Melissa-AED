@@ -8,4 +8,5 @@ public interface IGameRepository {
     Optional<Game> findById(Long id);
     Game save(Game game);
     void update(Game game);
+    Optional<Game> findFirstByOrderByIdDesc();
 }

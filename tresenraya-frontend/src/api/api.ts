@@ -8,8 +8,8 @@ export const registerUser = async (email: string, username: string, password: st
 };
 
 
-export const loginUser = async (email: string, password: string) => {
-    return axios.post(`${API_BASE_URL}/users/login`, { email, password });
+export const loginUser = async (username: string, password: string) => {
+    return axios.post(`${API_BASE_URL}/users/login`, { username, password });
 };
 
 

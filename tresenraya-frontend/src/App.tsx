@@ -1,13 +1,23 @@
 import React from "react";
-import TestApi from "./TestApi";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Auth from "./components/Auth";
+import Board from "./components/Board";
+import { GameProvider } from "./context/GameContext";
+import { UserProvider } from "./context/UserContext";
 
-function App() {
+const App: React.FC = () => {
     return (
-        <div>
-            <h1>Prueba de API</h1>
-            <TestApi />
-        </div>
+        <Router>
+            <UserProvider>
+                <GameProvider>
+                    <Routes>
+                        <Route path="/" element={<Auth />} />
+                        <Route path="/board" element={<Board />} />
+                    </Routes>
+                </GameProvider>
+            </UserProvider>
+        </Router>
     );
-}
+};
 
 export default App;
