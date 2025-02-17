@@ -12,4 +12,6 @@ public interface IGameService {
     Optional<Game> getGameStatus(Long gameId);
     Optional<Game> spectateGame(Long gameId);
     Long getLastGameId();
+    Optional<Game> findAvailableGame();
+
 }

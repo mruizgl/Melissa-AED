@@ -9,4 +9,6 @@ public interface IGameRepository {
     Game save(Game game);
     void update(Game game);
     Optional<Game> findFirstByOrderByIdDesc();
+    Optional<Game> findFirstByPlayer2IsNull();
+
 }

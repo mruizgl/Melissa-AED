@@ -2,21 +2,15 @@ import React from "react";
 import { useGame } from "../context/GameContext";
 import { useUser } from "../context/UserContext";
 import { makeMove } from "../api/api";
-import "../styles/board.css"; 
 
 const Board: React.FC = () => {
     const { game, setGame } = useGame();
-    const { user } = useUser(); 
+    const { user } = useUser();
 
-    if (!game) return <p className="loading-text">Cargando juego...</p>;
+    if (!game) return <p className="text-center text-xl font-semibold">Cargando juego...</p>;
 
     const handleMove = async (row: number, col: number) => {
-        if (game.boardState[row][col] || game.winner) return; 
-
-        if (!user) {
-            console.error("Error: No hay un usuario autenticado.");
-            return;
-        }
+        if (!user || game.winner || game.boardState[row][col]) return;
 
         try {
             const updatedGame = await makeMove(game.id, row, col, user.id);
@@ -27,25 +21,27 @@ const Board: React.FC = () => {
     };
 
     return (
-        <div className="board-container">
-            <h2 className="title">Tres en Raya</h2>
-
+        <div className="game-container">
+            <h2>Tres en Raya</h2>
+            
             <div className="board">
                 {game.boardState.map((row, rowIndex) => (
-                    <div key={rowIndex} className="board-row">
+                    <div key={rowIndex} className="row">
                         {row.map((cell, colIndex) => (
                             <button
                                 key={`${rowIndex}-${colIndex}`}
                                 className="cell"
+                                disabled={Boolean(cell) || Boolean(game.winner)} 
                                 onClick={() => handleMove(rowIndex, colIndex)}
                             >
-                                {cell || ""}
+                                {cell}
                             </button>
                         ))}
                     </div>
                 ))}
             </div>
 
+            {/* Mostrar el ganador si la partida ha finalizado */}
             {game.winner && (
                 <p className="winner-message">
                     🎉 ¡Jugador {game.winner} ha ganado! 🎉

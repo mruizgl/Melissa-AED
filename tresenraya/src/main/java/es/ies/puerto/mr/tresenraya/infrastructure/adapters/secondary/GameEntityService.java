@@ -37,5 +37,11 @@ public class GameEntityService implements IGameRepository {
         return gameJpaRepository.findById(gameId).map(GameMapper::toDomain);
     }
 
+    @Override
+    public Optional<Game> findFirstByPlayer2IsNull() {
+        return gameJpaRepository.findFirstByPlayer2IsNull().map(GameMapper::toDomain);
+    }
+
+
 
 }

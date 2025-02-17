@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d4d2164c-9483-4d84-ac72-db78c4a782cb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/model/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/primary/IGameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/primary/IGameService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/secondary/IGameRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/ports/secondary/IGameRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/service/GameDomainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/domain/service/GameDomainService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/GameRESTController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/GameRESTController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/UserRESTController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/primary/UserRESTController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameEntityService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/es/ies/puerto/mr/tresenraya/infrastructure/adapters/secondary/GameJpaRepository.java" afterDir="false" />
     </list>
@@ -105,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1739558420628</updated>
       <workItem from="1739558421830" duration="6850000" />
-      <workItem from="1739736694807" duration="17039000" />
+      <workItem from="1739736694807" duration="20760000" />
     </task>
     <servers />
   </component>

@@ -14,6 +14,7 @@ public class Game {
     private User winner;
     private String status;
 
+
     public Game(Long id, User player1, User player2, String status) {
         this.id = id;
         this.player1 = player1;

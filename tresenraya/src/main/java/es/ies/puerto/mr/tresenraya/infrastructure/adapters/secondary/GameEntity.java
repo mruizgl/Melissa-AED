@@ -27,4 +27,6 @@ public class GameEntity {
 
     @Column(columnDefinition = "TEXT")
     private String boardState;
+
+
 }

@@ -68,4 +68,11 @@ public class GameRESTController {
         Long lastId = gameService.getLastGameId();
         return ResponseEntity.ok(lastId);
     }
+
+    @GetMapping("/available")
+    public ResponseEntity<Game> findAvailableGame() {
+        Optional<Game> availableGame = gameService.findAvailableGame();
+        return availableGame.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.noContent().build());
+    }
+
 }
