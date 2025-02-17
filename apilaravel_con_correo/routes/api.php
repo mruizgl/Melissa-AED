@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthApiController;
-use App\Models\User;
+use App\Http\Controllers\UserController;
+use App\Http\Domain\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::get('/email/verify/{usuariorecibido}/{hash}', function (Request $request,
         return response()->json(['message' => 'El usuario no existe'], 404);
     }
 })->middleware(['signed'])->name('api.verificarcorreo');
+
+Route::get('/users', [UserController::class, 'index']);
